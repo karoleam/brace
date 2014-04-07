@@ -3,10 +3,10 @@ package backup;
 import backup.ItemListFragment.Callbacks;
 
 import com.flufighter.brace.ItemDetailActivity;
-import com.flufighter.brace.ItemDetailFragment;
 import com.flufighter.brace.R;
 import com.flufighter.brace.R.id;
 import com.flufighter.brace.R.layout;
+import com.flufighter.brace.detailFragments.ItemFoodFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ import android.widget.Toast;
  * <p>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link ItemListFragment} and the item details (if present) is a
- * {@link ItemDetailFragment}.
+ * {@link ItemFoodFragment}.
  * <p>
  * This activity also implements the required {@link ItemListFragment.Callbacks}
  * interface to listen for item selections.

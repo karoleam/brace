@@ -11,10 +11,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import backup.ItemListActivity;
 import backup.ItemListFragment.Callbacks;
 
 import com.flufighter.brace.dummy.DummyContent;
+import com.flufighter.brace.util.Constants;
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either
@@ -77,20 +79,20 @@ public class ItemMenuFragment extends Fragment implements OnClickListener {
 		View rootView = inflater.inflate(R.layout.left_menu_fragment,
 				container, false);
 
-//		ImageButton imageButtonExercise = (ImageButton) rootView
-//				.findViewById(R.id.imageButtonExercise);
-//		imageButtonExercise.setOnClickListener(this);
-//		ImageButton imageButtonFood = (ImageButton) rootView
-//				.findViewById(R.id.imageButtonFood);
-//		imageButtonFood.setOnClickListener(this);
-//
-//		ImageButton imageButtonWeather = (ImageButton) rootView
-//				.findViewById(R.id.imageButtonWeather);
-//		imageButtonWeather.setOnClickListener(this);
-//
-//		ImageButton imageButtonSleep = (ImageButton) rootView
-//				.findViewById(R.id.imageButtonSleep);
-//		imageButtonSleep.setOnClickListener(this);
+		ImageButton imageButtonRun = (ImageButton) rootView
+				.findViewById(R.id.imageButtonRun);
+		imageButtonRun.setOnClickListener(this);
+		ImageButton imageButtonFood = (ImageButton) rootView
+				.findViewById(R.id.imageButtonFood);
+		imageButtonFood.setOnClickListener(this);
+
+		ImageButton imageButtonForeCast = (ImageButton) rootView
+				.findViewById(R.id.imageButtonForecast);
+		imageButtonForeCast.setOnClickListener(this);
+
+		ImageButton imageButtonSleep = (ImageButton) rootView
+				.findViewById(R.id.imageButtonSleep);
+		imageButtonSleep.setOnClickListener(this);
 		// Show the dummy content as text in a TextView.
 		// if (mItem != null) {
 		// ((TextView)
@@ -123,17 +125,22 @@ public class ItemMenuFragment extends Fragment implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+
 		switch (v.getId()) {
-		case 0:
-			mCallbacks.onItemSelected(0);
-		case 1:
-			mCallbacks.onItemSelected(1);
+		case R.id.imageButtonRun:
+			mCallbacks.onItemSelected(Constants.ID_EXERCISE);
+			break;
+		case R.id.imageButtonFood:
+			mCallbacks.onItemSelected(Constants.ID_FOOD);
+			break;
 
-		case 2:
-			mCallbacks.onItemSelected(2);
+		case R.id.imageButtonForecast:
+			mCallbacks.onItemSelected(Constants.ID_FORECAST);
+			break;
 
+		case R.id.imageButtonSleep:
 		default:
-			mCallbacks.onItemSelected(3);
+			mCallbacks.onItemSelected(Constants.ID_SLEEP);
 
 		}
 	}

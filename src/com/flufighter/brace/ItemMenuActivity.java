@@ -1,6 +1,8 @@
 package com.flufighter.brace;
 
-import util.MyFragmentManager;
+import com.flufighter.brace.detailFragments.ItemFoodFragment;
+import com.flufighter.brace.util.MyFragmentManager;
+
 import backup.ItemListActivity;
 import backup.ItemListFragment;
 import android.content.Intent;
@@ -20,7 +22,7 @@ import android.widget.Toast;
  * <p>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link ItemListFragment} and the item details (if present) is a
- * {@link ItemDetailFragment}.
+ * {@link ItemFoodFragment}.
  * <p>
  * This activity also implements the required {@link ItemListFragment.Callbacks}
  * interface to listen for item selections.
@@ -58,7 +60,7 @@ public class ItemMenuActivity extends FragmentActivity implements
 			// ((ItemListFragment) getSupportFragmentManager().findFragmentById(
 			// R.id.item_list)).setActivateOnItemClick(true);
 
-			ItemDetailFragment fragment = new ItemDetailFragment();
+			ItemFoodFragment fragment = new ItemFoodFragment();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.item_detail_container, fragment).commit();
 		} else
@@ -68,47 +70,37 @@ public class ItemMenuActivity extends FragmentActivity implements
 		// TODO: If exposing deep links into your app, handle intents here.
 	}
 
-	
 	@Override
 	public void onItemSelected(int id) {
 
 		// put a switch here to define which fragment should be shwon
 
-		switch (id) {
-		case 0:
-		default:
-			if (mTwoPane)
-			{
-				
-				Fragment fragment= MyFragmentManager.getFragmentByType(id) ;
-				// fragment.setArguments(arguments);
-				getSupportFragmentManager().beginTransaction()
-						.replace(R.id.item_detail_container, fragment).commit();
-				
-				
-			}
-			else
-			{
-				Intent detailIntent = new Intent(this, ItemDetailActivity.class);
-				detailIntent.putExtra(ItemDetailActivity.ARG_ITEM_ID, id);
-				startActivity(detailIntent);
-			}
+		if (mTwoPane) {
 
+			Fragment fragment = MyFragmentManager.getFragmentByType(id);
+			// fragment.setArguments(arguments);
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.item_detail_container, fragment).commit();
+
+		} else {
+			Intent detailIntent = new Intent(this, ItemDetailActivity.class);
+			detailIntent.putExtra(ItemDetailActivity.ARG_ITEM_ID, id);
+			startActivity(detailIntent);
 		}
 
-//		if (mTwoPane) {
-//			// In two-pane mode, show the detail view in this activity by
-//			// adding or replacing the detail fragment using a
-//			// fragment transaction.
-//			// Bundle arguments = new Bundle();
-//			// arguments.putString(ItemDetailFragment.ARG_ITEM_ID, id);
-//			
-//
-//		} else {
-//			// In single-pane mode, simply start the detail activity
-//			// for the selected item ID.
-//			
-//		}
+		// if (mTwoPane) {
+		// // In two-pane mode, show the detail view in this activity by
+		// // adding or replacing the detail fragment using a
+		// // fragment transaction.
+		// // Bundle arguments = new Bundle();
+		// // arguments.putString(ItemDetailFragment.ARG_ITEM_ID, id);
+		//
+		//
+		// } else {
+		// // In single-pane mode, simply start the detail activity
+		// // for the selected item ID.
+		//
+		// }
 	}
-	
+
 }

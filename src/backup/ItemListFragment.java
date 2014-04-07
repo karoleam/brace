@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.flufighter.brace.ItemDetailFragment;
+import com.flufighter.brace.detailFragments.ItemFoodFragment;
 import com.flufighter.brace.dummy.DummyContent;
 
 /**
  * A list fragment representing a list of Items. This fragment
  * also supports tablet devices by allowing list items to be given an
  * 'activated' state upon selection. This helps indicate which item is
- * currently being viewed in a {@link ItemDetailFragment}.
+ * currently being viewed in a {@link ItemFoodFragment}.
  * <p>
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.

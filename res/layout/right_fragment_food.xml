@@ -17,7 +17,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageButton
-        android:id="@+id/imageButtonExercise"
+        android:id="@+id/imageButtonRun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
@@ -30,16 +30,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
-        android:layout_alignTop="@+id/imageButtonExercise"
+        android:layout_alignTop="@+id/imageButtonRun"
         android:layout_marginLeft="61dp"
         android:src="@drawable/food2cupcake" />
 
     <ImageButton
-        android:id="@+id/imageButtonWeather"
+        android:id="@+id/imageButtonForecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButtonExercise"
-        android:layout_below="@+id/imageButtonExercise"
+        android:layout_alignLeft="@+id/imageButtonRun"
+        android:layout_below="@+id/imageButtonRun"
         android:layout_marginTop="40dp"
         android:src="@drawable/food3apple" />
 
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageButtonFood"
-        android:layout_alignTop="@+id/imageButtonWeather"
+        android:layout_alignTop="@+id/imageButtonForecast"
         android:src="@drawable/food4banana" />
 
 </RelativeLayout>

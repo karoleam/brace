@@ -6,7 +6,7 @@
     tools:ignore="MergeRootFrame" >
 
     <ImageButton
-        android:id="@+id/imageButtonExercise"
+        android:id="@+id/imageButtonRun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -18,11 +18,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imageButtonExercise"
+        android:layout_below="@+id/imageButtonRun"
         android:src="@drawable/food_press" />
 
     <ImageButton
-        android:id="@+id/imageButtonWeather"
+        android:id="@+id/imageButtonForecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/imageButtonFood"
@@ -33,8 +33,8 @@
         android:id="@+id/imageButtonSleep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageButtonWeather"
-        android:layout_below="@+id/imageButtonWeather"
+        android:layout_alignRight="@+id/imageButtonForecast"
+        android:layout_below="@+id/imageButtonForecast"
         android:src="@drawable/sleep_press" />
 
 </RelativeLayout>
