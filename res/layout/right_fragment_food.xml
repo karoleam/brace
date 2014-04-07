@@ -17,7 +17,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/imageButtonExercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
@@ -26,29 +26,29 @@
         android:src="@drawable/food1burger" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/imageButtonFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
-        android:layout_alignTop="@+id/imageButton1"
+        android:layout_alignTop="@+id/imageButtonExercise"
         android:layout_marginLeft="61dp"
         android:src="@drawable/food2cupcake" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/imageButtonWeather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton1"
-        android:layout_below="@+id/imageButton1"
+        android:layout_alignLeft="@+id/imageButtonExercise"
+        android:layout_below="@+id/imageButtonExercise"
         android:layout_marginTop="40dp"
         android:src="@drawable/food3apple" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/imageButtonSleep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton2"
-        android:layout_alignTop="@+id/imageButton3"
+        android:layout_alignLeft="@+id/imageButtonFood"
+        android:layout_alignTop="@+id/imageButtonWeather"
         android:src="@drawable/food4banana" />
 
 </RelativeLayout>

@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import backup.ItemListActivity;
 import backup.ItemListFragment.Callbacks;
@@ -15,99 +17,124 @@ import backup.ItemListFragment.Callbacks;
 import com.flufighter.brace.dummy.DummyContent;
 
 /**
- * A fragment representing a single Item detail screen.
- * This fragment is either contained in a {@link ItemListActivity}
- * in two-pane mode (on tablets) or a {@link ItemDetailActivity}
- * on handsets.
+ * A fragment representing a single Item detail screen. This fragment is either
+ * contained in a {@link ItemListActivity} in two-pane mode (on tablets) or a
+ * {@link ItemDetailActivity} on handsets.
  */
-public class ItemMenuFragment extends Fragment {
-	
-	 public interface Callbacks {
-	        /**
-	         * Callback for when an item has been selected.
-	         */
-	        public void onItemSelected(int id);
-	    }
-	
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
-    public static final String ARG_ITEM_ID = "item_id";
+public class ItemMenuFragment extends Fragment implements OnClickListener {
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
-    private DummyContent.DummyItem mItem;
-    
-    private Callbacks mCallbacks = sDummyCallbacks;
+	public interface Callbacks {
+		/**
+		 * Callback for when an item has been selected.
+		 */
+		public void onItemSelected(int id);
+	}
 
-    private static Callbacks sDummyCallbacks = new Callbacks() {
-        @Override
-        public void onItemSelected(int id) {
-        }
-    };
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public ItemMenuFragment() {
-    }
+	/**
+	 * The fragment argument representing the item ID that this fragment
+	 * represents.
+	 */
+	public static final String ARG_ITEM_ID = "item_id";
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	/**
+	 * The dummy content this fragment is presenting.
+	 */
+	private DummyContent.DummyItem mItem;
 
-//        if (getArguments().containsKey(ARG_ITEM_ID)) {
-//            // Load the dummy content specified by the fragment
-//            // arguments. In a real-world scenario, use a Loader
-//            // to load content from a content provider.
-//            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
-//        }
-    }
+	private Callbacks mCallbacks = sDummyCallbacks;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-     //   View rootView = inflater.inflate(R.layout.activity_item_detail, container, false);
-        View rootView = inflater.inflate(R.layout.fragment_item_menu, container, false);
+	private static Callbacks sDummyCallbacks = new Callbacks() {
+		@Override
+		public void onItemSelected(int id) {
+		}
+	};
 
-        Button button=(Button) rootView.findViewById(R.id.button1);
-        button.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-		        mCallbacks.onItemSelected(0);
+	/**
+	 * Mandatory empty constructor for the fragment manager to instantiate the
+	 * fragment (e.g. upon screen orientation changes).
+	 */
+	public ItemMenuFragment() {
+	}
 
-				
-			}
-		});
-        
-        // Show the dummy content as text in a TextView.
-//        if (mItem != null) {
-//            ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.content);
-//        }
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        return rootView;
-    }
-    
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+		// if (getArguments().containsKey(ARG_ITEM_ID)) {
+		// // Load the dummy content specified by the fragment
+		// // arguments. In a real-world scenario, use a Loader
+		// // to load content from a content provider.
+		// mItem =
+		// DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+		// }
+	}
 
-        // Activities containing this fragment must implement its callbacks.
-        if (!(activity instanceof Callbacks)) {
-            throw new IllegalStateException("Activity must implement fragment's callbacks.");
-        }
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// View rootView = inflater.inflate(R.layout.activity_item_detail,
+		// container, false);
+		View rootView = inflater.inflate(R.layout.left_menu_fragment,
+				container, false);
 
-        mCallbacks = (Callbacks) activity;
-    }
+//		ImageButton imageButtonExercise = (ImageButton) rootView
+//				.findViewById(R.id.imageButtonExercise);
+//		imageButtonExercise.setOnClickListener(this);
+//		ImageButton imageButtonFood = (ImageButton) rootView
+//				.findViewById(R.id.imageButtonFood);
+//		imageButtonFood.setOnClickListener(this);
+//
+//		ImageButton imageButtonWeather = (ImageButton) rootView
+//				.findViewById(R.id.imageButtonWeather);
+//		imageButtonWeather.setOnClickListener(this);
+//
+//		ImageButton imageButtonSleep = (ImageButton) rootView
+//				.findViewById(R.id.imageButtonSleep);
+//		imageButtonSleep.setOnClickListener(this);
+		// Show the dummy content as text in a TextView.
+		// if (mItem != null) {
+		// ((TextView)
+		// rootView.findViewById(R.id.item_detail)).setText(mItem.content);
+		// }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
+		return rootView;
+	}
 
-        // Reset the active callbacks interface to the dummy implementation.
-        mCallbacks = sDummyCallbacks;
-    }
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+
+		// Activities containing this fragment must implement its callbacks.
+		if (!(activity instanceof Callbacks)) {
+			throw new IllegalStateException(
+					"Activity must implement fragment's callbacks.");
+		}
+
+		mCallbacks = (Callbacks) activity;
+	}
+
+	@Override
+	public void onDetach() {
+		super.onDetach();
+
+		// Reset the active callbacks interface to the dummy implementation.
+		mCallbacks = sDummyCallbacks;
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case 0:
+			mCallbacks.onItemSelected(0);
+		case 1:
+			mCallbacks.onItemSelected(1);
+
+		case 2:
+			mCallbacks.onItemSelected(2);
+
+		default:
+			mCallbacks.onItemSelected(3);
+
+		}
+	}
 }

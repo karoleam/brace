@@ -30,25 +30,24 @@ public final class R {
         public static final int sun=0x7f020010;
     }
     public static final class id {
-        public static final int TextView01=0x7f060012;
-        public static final int button1=0x7f060004;
-        public static final int editText1=0x7f060009;
-        public static final int editText2=0x7f06000a;
-        public static final int imageButton1=0x7f060005;
-        public static final int imageButton2=0x7f060006;
-        public static final int imageButton3=0x7f060007;
-        public static final int imageButton4=0x7f060008;
-        public static final int imageView1=0x7f06000d;
-        public static final int imageView2=0x7f06000e;
-        public static final int imageView3=0x7f06000f;
-        public static final int imageView4=0x7f060010;
-        public static final int imageView5=0x7f060011;
-        public static final int item_detail=0x7f060002;
+        public static final int TextView01=0x7f060011;
+        public static final int button1=0x7f06000b;
+        public static final int editText1=0x7f060007;
+        public static final int editText2=0x7f060008;
+        public static final int imageButtonExercise=0x7f060002;
+        public static final int imageButtonFood=0x7f060003;
+        public static final int imageButtonSleep=0x7f060005;
+        public static final int imageButtonWeather=0x7f060004;
+        public static final int imageView1=0x7f06000c;
+        public static final int imageView2=0x7f06000d;
+        public static final int imageView3=0x7f06000e;
+        public static final int imageView4=0x7f06000f;
+        public static final int imageView5=0x7f060010;
         public static final int item_detail_container=0x7f060000;
         public static final int item_list=0x7f060001;
-        public static final int textView1=0x7f060003;
-        public static final int textView2=0x7f06000b;
-        public static final int textView3=0x7f06000c;
+        public static final int textView1=0x7f060006;
+        public static final int textView2=0x7f060009;
+        public static final int textView3=0x7f06000a;
     }
     public static final class layout {
         public static final int activity_item_detail=0x7f030000;
@@ -70,16 +69,14 @@ public final class R {
          */
         public static final int activity_item_menu=0x7f030002;
         public static final int activity_item_twopane=0x7f030003;
-        public static final int fragment_item_detail=0x7f030004;
-        public static final int fragment_item_menu=0x7f030005;
-        public static final int left_menu_fragment=0x7f030006;
-        public static final int login=0x7f030007;
-        public static final int main=0x7f030008;
-        public static final int right_fragment_food=0x7f030009;
-        public static final int right_fragment_food2=0x7f03000a;
-        public static final int right_fragment_forcast=0x7f03000b;
-        public static final int right_fragment_run=0x7f03000c;
-        public static final int right_fragment_sleep=0x7f03000d;
+        public static final int left_menu_fragment=0x7f030004;
+        public static final int login=0x7f030005;
+        public static final int main=0x7f030006;
+        public static final int right_fragment_food=0x7f030007;
+        public static final int right_fragment_food2=0x7f030008;
+        public static final int right_fragment_forcast=0x7f030009;
+        public static final int right_fragment_run=0x7f03000a;
+        public static final int right_fragment_sleep=0x7f03000b;
     }
     public static final class string {
         public static final int app_name=0x7f040000;

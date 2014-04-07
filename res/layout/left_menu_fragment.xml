@@ -1,41 +1,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemDetailActivity"
+    tools:context=".ItemMenuActivity"
     tools:ignore="MergeRootFrame" >
 
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/imageButtonExercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/imageButton2"
+        android:layout_alignRight="@+id/imageButtonFood"
         android:src="@drawable/run_small_press" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/imageButtonFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imageButton1"
+        android:layout_below="@+id/imageButtonExercise"
         android:src="@drawable/food_press" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/imageButtonWeather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageButton2"
-        android:layout_below="@+id/imageButton2"
+        android:layout_alignRight="@+id/imageButtonFood"
+        android:layout_below="@+id/imageButtonFood"
         android:src="@drawable/cloud" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/imageButtonSleep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageButton3"
-        android:layout_below="@+id/imageButton3"
+        android:layout_alignRight="@+id/imageButtonWeather"
+        android:layout_below="@+id/imageButtonWeather"
         android:src="@drawable/sleep_press" />
 
 </RelativeLayout>

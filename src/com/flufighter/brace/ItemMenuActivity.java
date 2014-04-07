@@ -1,9 +1,11 @@
 package com.flufighter.brace;
 
+import util.MyFragmentManager;
 import backup.ItemListActivity;
 import backup.ItemListFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -78,7 +80,7 @@ public class ItemMenuActivity extends FragmentActivity implements
 			if (mTwoPane)
 			{
 				
-				ItemDetailFragment fragment = new ItemDetailFragment();
+				Fragment fragment= MyFragmentManager.getFragmentByType(id) ;
 				// fragment.setArguments(arguments);
 				getSupportFragmentManager().beginTransaction()
 						.replace(R.id.item_detail_container, fragment).commit();
