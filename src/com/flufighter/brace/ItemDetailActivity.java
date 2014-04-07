@@ -1,5 +1,6 @@
 package com.flufighter.brace;
 
+import backup.ItemListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -38,8 +39,31 @@ public class ItemDetailActivity extends FragmentActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(ItemDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(ItemDetailFragment.ARG_ITEM_ID));
+            arguments.putString(ItemMenuActivity.ARG_ITEM_ID,
+                    getIntent().getStringExtra(ItemMenuActivity.ARG_ITEM_ID));
+           
+    		switch (id) {
+    		case 0:
+    		default:
+    			if (mTwoPane)
+    			{
+    				
+    				ItemDetailFragment fragment = new ItemDetailFragment();
+    				// fragment.setArguments(arguments);
+    				getSupportFragmentManager().beginTransaction()
+    						.replace(R.id.item_detail_container, fragment).commit();
+    				
+    				
+    			}
+    			else
+    			{
+    				Intent detailIntent = new Intent(this, ItemDetailActivity.class);
+    				detailIntent.putExtra(ItemDetailFragment.ARG_ITEM_ID, id);
+    				startActivity(detailIntent);
+    			}
+
+    		}
+            
             ItemDetailFragment fragment = new ItemDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

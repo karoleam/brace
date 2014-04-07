@@ -14,12 +14,15 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
+        public static final int button1=0x7f060004;
         public static final int item_detail=0x7f060002;
         public static final int item_detail_container=0x7f060000;
         public static final int item_list=0x7f060001;
+        public static final int textView1=0x7f060003;
     }
     public static final class layout {
         public static final int activity_item_detail=0x7f030000;
+        public static final int activity_item_list=0x7f030001;
         /** 
     Layout alias to replace the single-pane version of the layout with a
     two-pane version on Large screens.
@@ -35,9 +38,10 @@ public final class R {
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     
          */
-        public static final int activity_item_list=0x7f030001;
-        public static final int activity_item_twopane=0x7f030002;
-        public static final int fragment_item_detail=0x7f030003;
+        public static final int activity_item_menu=0x7f030002;
+        public static final int activity_item_twopane=0x7f030003;
+        public static final int fragment_item_detail=0x7f030004;
+        public static final int fragment_item_menu=0x7f030005;
     }
     public static final class string {
         public static final int app_name=0x7f040000;

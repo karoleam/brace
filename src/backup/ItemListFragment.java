@@ -1,4 +1,4 @@
-package com.flufighter.brace;
+package backup;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.flufighter.brace.ItemDetailFragment;
 import com.flufighter.brace.dummy.DummyContent;
 
 /**
