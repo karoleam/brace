@@ -69,6 +69,7 @@ public class ItemMenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+     //   View rootView = inflater.inflate(R.layout.activity_item_detail, container, false);
         View rootView = inflater.inflate(R.layout.fragment_item_menu, container, false);
 
         Button button=(Button) rootView.findViewById(R.id.button1);

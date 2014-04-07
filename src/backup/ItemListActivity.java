@@ -68,24 +68,24 @@ public class ItemListActivity extends FragmentActivity implements
 
 	@Override
 	public void onItemSelected(String id) {
-		if (mTwoPane) {
-			// In two-pane mode, show the detail view in this activity by
-			// adding or replacing the detail fragment using a
-			// fragment transaction.
-			Bundle arguments = new Bundle();
-			arguments.putString(ItemDetailFragment.ARG_ITEM_ID, id);
-			ItemDetailFragment fragment = new ItemDetailFragment();
-			fragment.setArguments(arguments);
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.item_detail_container, fragment).commit();
-
-		} else {
-			// In single-pane mode, simply start the detail activity
-			// for the selected item ID.
-			Intent detailIntent = new Intent(this, ItemDetailActivity.class);
-			detailIntent.putExtra(ItemDetailFragment.ARG_ITEM_ID, id);
-			startActivity(detailIntent);
-		}
+//		if (mTwoPane) {
+//			// In two-pane mode, show the detail view in this activity by
+//			// adding or replacing the detail fragment using a
+//			// fragment transaction.
+//			Bundle arguments = new Bundle();
+//			arguments.putString(ItemDetailFragment.ARG_ITEM_ID, id);
+//			ItemDetailFragment fragment = new ItemDetailFragment();
+//			fragment.setArguments(arguments);
+//			getSupportFragmentManager().beginTransaction()
+//					.replace(R.id.item_detail_container, fragment).commit();
+//
+//		} else {
+//			// In single-pane mode, simply start the detail activity
+//			// for the selected item ID.
+//			Intent detailIntent = new Intent(this, ItemDetailActivity.class);
+//			detailIntent.putExtra(ItemDetailFragment.ARG_ITEM_ID, id);
+//			startActivity(detailIntent);
+//		}
 	}
 
 }

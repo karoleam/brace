@@ -18,6 +18,9 @@ import android.view.MenuItem;
  */
 public class ItemDetailActivity extends FragmentActivity {
 
+	
+	public static final String ARG_ITEM_ID = "item_id";
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,38 +41,34 @@ public class ItemDetailActivity extends FragmentActivity {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            Bundle arguments = new Bundle();
-            arguments.putString(ItemMenuActivity.ARG_ITEM_ID,
-                    getIntent().getStringExtra(ItemMenuActivity.ARG_ITEM_ID));
+//            Bundle arguments = new Bundle();
+//            arguments.putString(ItemMenuActivity.ARG_ITEM_ID,
+//                    getIntent().getStringExtra(ItemMenuActivity.ARG_ITEM_ID));
+        	
+//          if (getArguments().containsKey(ARG_ITEM_ID)) {
+//          // Load the dummy content specified by the fragment
+//          // arguments. In a real-world scenario, use a Loader
+//          // to load content from a content provider.
+//         // mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+//      }
+        	
+        	
+        	Bundle extras=getIntent().getExtras();
+        	if (extras!=null){
            
-    		switch (id) {
+    		switch (extras.getInt(ARG_ITEM_ID)) {
     		case 0:
     		default:
-    			if (mTwoPane)
-    			{
-    				
-    				ItemDetailFragment fragment = new ItemDetailFragment();
-    				// fragment.setArguments(arguments);
-    				getSupportFragmentManager().beginTransaction()
-    						.replace(R.id.item_detail_container, fragment).commit();
-    				
-    				
-    			}
-    			else
-    			{
-    				Intent detailIntent = new Intent(this, ItemDetailActivity.class);
-    				detailIntent.putExtra(ItemDetailFragment.ARG_ITEM_ID, id);
-    				startActivity(detailIntent);
-    			}
+    	
+    			 ItemDetailFragment fragment = new ItemDetailFragment();
+		            getSupportFragmentManager().beginTransaction()
+		                    .add(R.id.item_detail_container, fragment)
+		                    .commit();
 
     		}
             
-            ItemDetailFragment fragment = new ItemDetailFragment();
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.item_detail_container, fragment)
-                    .commit();
-        }
+           
+        }}
     }
 
     @Override

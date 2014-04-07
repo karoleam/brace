@@ -32,12 +32,10 @@ public class ItemMenuActivity extends FragmentActivity implements
 	 */
 	private boolean mTwoPane;
 	private final static String TAG = ItemListActivity.class.getSimpleName();
-    public static final String ARG_ITEM_ID = "item_id";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// setContentView(R.layout.activity_item_list);
 		setContentView(R.layout.activity_item_menu);
 		Log.w(TAG, "onCreate");
 		// Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
@@ -90,7 +88,7 @@ public class ItemMenuActivity extends FragmentActivity implements
 			else
 			{
 				Intent detailIntent = new Intent(this, ItemDetailActivity.class);
-				detailIntent.putExtra(ItemDetailFragment.ARG_ITEM_ID, id);
+				detailIntent.putExtra(ItemDetailActivity.ARG_ITEM_ID, id);
 				startActivity(detailIntent);
 			}
 
