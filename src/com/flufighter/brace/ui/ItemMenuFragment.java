@@ -78,18 +78,18 @@ public class ItemMenuFragment extends Fragment implements OnClickListener {
 				container, false);
 
 		ImageButton imageButtonRun = (ImageButton) rootView
-				.findViewById(R.id.imageButtonFood1);
+				.findViewById(R.id.imageButtonMenu1);
 		imageButtonRun.setOnClickListener(this);
 		ImageButton imageButtonFood = (ImageButton) rootView
-				.findViewById(R.id.imageButtonFood2);
+				.findViewById(R.id.imageButtonMenu2);
 		imageButtonFood.setOnClickListener(this);
 
 		ImageButton imageButtonForeCast = (ImageButton) rootView
-				.findViewById(R.id.imageButtonFood3);
+				.findViewById(R.id.imageButtonMenu3);
 		imageButtonForeCast.setOnClickListener(this);
 
 		ImageButton imageButtonSleep = (ImageButton) rootView
-				.findViewById(R.id.imageButtonFood4);
+				.findViewById(R.id.imageButtonMenu4);
 		imageButtonSleep.setOnClickListener(this);
 		// Show the dummy content as text in a TextView.
 		// if (mItem != null) {
@@ -125,18 +125,18 @@ public class ItemMenuFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 
 		switch (v.getId()) {
-		case R.id.imageButtonFood1:
+		case R.id.imageButtonMenu1:
 			mCallbacks.onItemSelected(Constants.ID_EXERCISE);
 			break;
-		case R.id.imageButtonFood2:
+		case R.id.imageButtonMenu2:
 			mCallbacks.onItemSelected(Constants.ID_FOOD);
 			break;
 
-		case R.id.imageButtonFood3:
+		case R.id.imageButtonMenu3:
 			mCallbacks.onItemSelected(Constants.ID_FORECAST);
 			break;
 
-		case R.id.imageButtonFood4:
+		case R.id.imageButtonMenu4:
 		default:
 			mCallbacks.onItemSelected(Constants.ID_SLEEP);
 
