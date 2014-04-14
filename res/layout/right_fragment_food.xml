@@ -7,7 +7,7 @@
     tools:ignore="MergeRootFrame" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textViewFood1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -17,39 +17,39 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageButton
-        android:id="@+id/imageButtonRun"
+        android:id="@+id/imageButtonFood2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_marginRight="47dp"
-        android:layout_toLeftOf="@+id/textView1"
-        android:src="@drawable/food1burger" />
-
-    <ImageButton
-        android:id="@+id/imageButtonFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignTop="@+id/imageButtonRun"
+        android:layout_alignLeft="@+id/textViewFood1"
+        android:layout_alignTop="@+id/imageButtonFood1"
         android:layout_marginLeft="61dp"
         android:src="@drawable/food2cupcake" />
 
     <ImageButton
-        android:id="@+id/imageButtonForecast"
+        android:id="@+id/imageButtonFood3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButtonRun"
-        android:layout_below="@+id/imageButtonRun"
+        android:layout_alignLeft="@+id/imageButtonFood1"
+        android:layout_below="@+id/imageButtonFood1"
         android:layout_marginTop="40dp"
         android:src="@drawable/food3apple" />
 
     <ImageButton
-        android:id="@+id/imageButtonSleep"
+        android:id="@+id/imageButtonFood4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButtonFood"
-        android:layout_alignTop="@+id/imageButtonForecast"
+        android:layout_alignLeft="@+id/imageButtonFood2"
+        android:layout_alignTop="@+id/imageButtonFood3"
         android:src="@drawable/food4banana" />
+
+    <ImageButton
+        android:id="@+id/imageButtonFood1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewFood1"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/imageButtonFood2"
+        android:src="@drawable/food1burger" />
 
 </RelativeLayout>
 

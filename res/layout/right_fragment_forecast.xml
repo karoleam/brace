@@ -1,3 +1,4 @@
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -5,7 +6,7 @@
     tools:ignore="MergeRootFrame" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textViewForecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -15,30 +16,24 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageViewFood1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="35dp"
-        android:layout_toLeftOf="@+id/imageView3"
-        android:src="@drawable/food2cupcake" />
+        android:layout_alignRight="@+id/textViewForecast"
+        android:layout_below="@+id/textViewForecast"
+        android:layout_marginTop="27dp"
+        android:src="@drawable/sun" />
 
-    <ImageView
-        android:id="@+id/imageView3"
+    <TextView
+        android:id="@+id/textViewForecast2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView2"
-        android:layout_marginLeft="24dp"
-        android:layout_toRightOf="@+id/textView1"
-        android:src="@drawable/food2cupcake" />
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView2"
-        android:layout_toLeftOf="@+id/textView1"
-        android:src="@drawable/food2cupcake" />
+        android:layout_alignRight="@+id/imageViewFood1"
+        android:layout_below="@+id/imageViewFood1"
+        android:layout_marginTop="64dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
+
 

@@ -6,35 +6,35 @@
     tools:ignore="MergeRootFrame" >
 
     <ImageButton
-        android:id="@+id/imageButtonRun"
+        android:id="@+id/imageButtonMenu1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/imageButtonFood"
+        android:layout_alignRight="@+id/imageButtonMenu2"
         android:src="@drawable/run_small_press" />
 
     <ImageButton
-        android:id="@+id/imageButtonFood"
+        android:id="@+id/imageButtonMenu2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imageButtonRun"
+        android:layout_below="@+id/imageButtonMenu1"
         android:src="@drawable/food_press" />
 
     <ImageButton
-        android:id="@+id/imageButtonForecast"
+        android:id="@+id/imageButtonMenu3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageButtonFood"
-        android:layout_below="@+id/imageButtonFood"
+        android:layout_alignRight="@+id/imageButtonMenu2"
+        android:layout_below="@+id/imageButtonMenu2"
         android:src="@drawable/cloud" />
 
     <ImageButton
-        android:id="@+id/imageButtonSleep"
+        android:id="@+id/imageButtonMenu4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageButtonForecast"
-        android:layout_below="@+id/imageButtonForecast"
+        android:layout_alignRight="@+id/imageButtonMenu3"
+        android:layout_below="@+id/imageButtonMenu3"
         android:src="@drawable/sleep_press" />
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.flufighter.brace;
+package com.flufighter.brace.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,10 +12,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import backup.ItemListActivity;
-import backup.ItemListFragment.Callbacks;
 
-import com.flufighter.brace.dummy.DummyContent;
+
+import com.flufighter.brace.R;
 import com.flufighter.brace.util.Constants;
 
 /**
@@ -41,7 +40,6 @@ public class ItemMenuFragment extends Fragment implements OnClickListener {
 	/**
 	 * The dummy content this fragment is presenting.
 	 */
-	private DummyContent.DummyItem mItem;
 
 	private Callbacks mCallbacks = sDummyCallbacks;
 
@@ -80,18 +78,18 @@ public class ItemMenuFragment extends Fragment implements OnClickListener {
 				container, false);
 
 		ImageButton imageButtonRun = (ImageButton) rootView
-				.findViewById(R.id.imageButtonRun);
+				.findViewById(R.id.imageButtonFood1);
 		imageButtonRun.setOnClickListener(this);
 		ImageButton imageButtonFood = (ImageButton) rootView
-				.findViewById(R.id.imageButtonFood);
+				.findViewById(R.id.imageButtonFood2);
 		imageButtonFood.setOnClickListener(this);
 
 		ImageButton imageButtonForeCast = (ImageButton) rootView
-				.findViewById(R.id.imageButtonForecast);
+				.findViewById(R.id.imageButtonFood3);
 		imageButtonForeCast.setOnClickListener(this);
 
 		ImageButton imageButtonSleep = (ImageButton) rootView
-				.findViewById(R.id.imageButtonSleep);
+				.findViewById(R.id.imageButtonFood4);
 		imageButtonSleep.setOnClickListener(this);
 		// Show the dummy content as text in a TextView.
 		// if (mItem != null) {
@@ -127,18 +125,18 @@ public class ItemMenuFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 
 		switch (v.getId()) {
-		case R.id.imageButtonRun:
+		case R.id.imageButtonFood1:
 			mCallbacks.onItemSelected(Constants.ID_EXERCISE);
 			break;
-		case R.id.imageButtonFood:
+		case R.id.imageButtonFood2:
 			mCallbacks.onItemSelected(Constants.ID_FOOD);
 			break;
 
-		case R.id.imageButtonForecast:
+		case R.id.imageButtonFood3:
 			mCallbacks.onItemSelected(Constants.ID_FORECAST);
 			break;
 
-		case R.id.imageButtonSleep:
+		case R.id.imageButtonFood4:
 		default:
 			mCallbacks.onItemSelected(Constants.ID_SLEEP);
 

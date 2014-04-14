@@ -1,10 +1,9 @@
-package com.flufighter.brace;
+package com.flufighter.brace.ui;
 
-import com.flufighter.brace.detailFragments.ItemFoodFragment;
+import com.flufighter.brace.R;
+import com.flufighter.brace.ui.detailFragments.ItemFoodFragment;
 import com.flufighter.brace.util.MyFragmentManager;
 
-import backup.ItemListActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -79,8 +78,8 @@ public class ItemDetailActivity extends FragmentActivity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpTo(this,
-					new Intent(this, ItemListActivity.class));
+//			NavUtils.navigateUpTo(this,
+//					new Intent(this, ItemListActivity.class));
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

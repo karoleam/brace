@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.flufighter.brace.ItemMenuActivity"
+            android:name="com.flufighter.brace.ui.ItemMenuActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +23,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.flufighter.brace.ItemDetailActivity"
+            android:name="com.flufighter.brace.ui.ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".ItemMenuActivity" >
+            android:parentActivityName=".ui.ItemMenuActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ItemMenuActivity" />

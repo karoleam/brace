@@ -1,10 +1,10 @@
-package com.flufighter.brace;
+package com.flufighter.brace.ui;
 
-import com.flufighter.brace.detailFragments.ItemFoodFragment;
+import com.flufighter.brace.R;
+import com.flufighter.brace.ui.detailFragments.ItemFoodFragment;
 import com.flufighter.brace.util.MyFragmentManager;
 
-import backup.ItemListActivity;
-import backup.ItemListFragment;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -35,7 +35,7 @@ public class ItemMenuActivity extends FragmentActivity implements
 	 * device.
 	 */
 	private boolean mTwoPane;
-	private final static String TAG = ItemListActivity.class.getSimpleName();
+	private final static String TAG = ItemMenuActivity.class.getSimpleName();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
