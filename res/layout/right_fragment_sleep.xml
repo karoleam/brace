@@ -5,13 +5,12 @@
     tools:ignore="MergeRootFrame" >
 
     <TextView
+        style="@style/Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
-        android:text="Your sleeping pattern last night:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="Your sleeping pattern last night:" />
 
 </RelativeLayout>
-
