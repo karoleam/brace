@@ -1,6 +1,10 @@
-package com.flufighter.brace;
+package com.flufighter.brace.ui;
 
-import com.flufighter.brace.ui.ItemMenuActivity;
+import com.flufighter.brace.R;
+import com.flufighter.brace.R.id;
+import com.flufighter.brace.R.layout;
+import com.flufighter.brace.R.menu;
+import com.flufighter.brace.R.string;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

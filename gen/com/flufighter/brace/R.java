@@ -30,7 +30,7 @@ public final class R {
         public static final int sun=0x7f020010;
     }
     public static final class id {
-        public static final int action_forgot_password=0x7f070020;
+        public static final int action_forgot_password=0x7f070022;
         public static final int email=0x7f070006;
         public static final int imageButtonFood1=0x7f070016;
         public static final int imageButtonFood2=0x7f070015;
@@ -48,7 +48,7 @@ public final class R {
         public static final int imageViewMain3=0x7f070011;
         public static final int imageViewMain4=0x7f070012;
         public static final int imageViewMain5=0x7f070013;
-        public static final int imageViewRun=0x7f07001f;
+        public static final int imageViewRun=0x7f070021;
         public static final int item_detail_container=0x7f070000;
         public static final int item_list=0x7f070001;
         public static final int login=0x7f070008;
@@ -59,8 +59,10 @@ public final class R {
         public static final int sign_in_button=0x7f070009;
         public static final int textViewFood1=0x7f070014;
         public static final int textViewFood2=0x7f070019;
-        public static final int textViewForecast=0x7f07001d;
-        public static final int textViewForecast2=0x7f07001e;
+        public static final int textViewForecastCity=0x7f07001d;
+        public static final int textViewForecastDescription=0x7f07001e;
+        public static final int textViewForecastSuggestion=0x7f070020;
+        public static final int textViewForecastTempeature=0x7f07001f;
         public static final int textViewMain=0x7f07000e;
         public static final int textViewRun=0x7f070005;
     }

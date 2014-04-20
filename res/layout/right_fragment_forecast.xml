@@ -1,36 +1,60 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="MergeRootFrame" >
+    android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textViewForecast"
         style="@style/Text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp"
-        android:text="Large Text" />
-
-    <ImageView
-        android:id="@+id/imageViewFood1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textViewForecast"
-        android:layout_below="@+id/textViewForecast"
-        android:layout_marginTop="27dp"
-        android:src="@drawable/sun" />
+        android:gravity="center"
+        android:text="You are at: " />
 
     <TextView
-        android:id="@+id/textViewForecast2"
+        android:id="@+id/textViewForecastCity"
         style="@style/Text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageViewFood1"
-        android:layout_below="@+id/imageViewFood1"
-        android:layout_marginTop="64dp"
-        android:text="Large Text" />
+        android:gravity="center"
+        android:text="" />
 
-</RelativeLayout>
+    <TextView
+        style="@style/Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Weather today will be:" />
+
+    <TextView
+        android:id="@+id/textViewForecastDescription"
+        style="@style/Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="" />
+
+    <TextView
+        style="@style/Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="and the temperature is " />
+
+    <TextView
+        android:id="@+id/textViewForecastTempeature"
+        style="@style/Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textViewForecastSuggestion"
+        style="@style/Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="" />
+
+</LinearLayout>
