@@ -35,7 +35,8 @@ public final class R {
         public static final int sun=0x7f020011;
     }
     public static final class id {
-        public static final int action_forgot_password=0x7f080022;
+        public static final int action_forgot_password=0x7f080023;
+        public static final int chart=0x7f080022;
         public static final int email=0x7f080006;
         public static final int gridview=0x7f080015;
         public static final int imageButtonMenu1=0x7f08000a;

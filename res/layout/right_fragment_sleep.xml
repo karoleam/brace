@@ -12,5 +12,17 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
         android:text="Your sleeping pattern last night:" />
+    
+    
+            <LinearLayout
+        android:id="@+id/chart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+    </LinearLayout>
+    
+    
+
 
 </RelativeLayout>
