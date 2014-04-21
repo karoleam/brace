@@ -16,39 +16,15 @@
         android:layout_marginTop="78dp"
         android:text="Large Text" />
 
-    <ImageButton
-        android:id="@+id/imageButtonFood2"
-        android:layout_width="wrap_content"
+    <GridView
+        android:id="@+id/gridview"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewFood1"
-        android:layout_alignTop="@+id/imageButtonFood1"
-        android:layout_marginLeft="61dp"
-        android:src="@drawable/food2cupcake" />
-
-    <ImageButton
-        android:id="@+id/imageButtonFood3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButtonFood1"
-        android:layout_below="@+id/imageButtonFood1"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/food3apple" />
-
-    <ImageButton
-        android:id="@+id/imageButtonFood4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButtonFood2"
-        android:layout_alignTop="@+id/imageButtonFood3"
-        android:src="@drawable/food4banana" />
-
-    <ImageButton
-        android:id="@+id/imageButtonFood1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewFood1"
-        android:layout_marginRight="20dp"
-        android:layout_toLeftOf="@+id/imageButtonFood2"
-        android:src="@drawable/food1burger" />
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" />
 
 </RelativeLayout>

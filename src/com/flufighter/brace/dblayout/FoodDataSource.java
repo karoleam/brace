@@ -23,8 +23,30 @@ public class FoodDataSource {
 
 	}
 
-	public long insertFood(Food food) {
-		return 0;
+	public void insertDefaultFoods() {
+		ArrayList<Food> foods = new ArrayList<Food>();
+		foods.add(new Food("Cupcake", 100, "food_cupcake"));
+		foods.add(new Food("Hamburguer", 300, "food_hamburguer"));
+		foods.add(new Food("Banana", 250, "food_banana"));
+		foods.add(new Food("Apple", 250, "food_apple"));
+
+		insertFoods(foods);
+
+	}
+
+	public void insertFoods(ArrayList<Food> foods) {
+
+		database = dbhelper.getWritableDatabase();
+		for (Food food : foods) {
+			ContentValues values = new ContentValues();
+			values.put(FoodTable.COLUMN_NAME, food.getName());
+			values.put(FoodTable.COLUMN_CALORIES, food.getCalories());
+			values.put(FoodTable.COLUMN_IMAGE_NAME, food.getImageName());
+
+			database.insert(FoodTable.TABLE_FOOD, null, values);
+
+		}
+		dbhelper.close();
 
 	}
 
@@ -43,7 +65,35 @@ public class FoodDataSource {
 
 	public ArrayList<Food> allFood() {
 
-		return null;
+		database = dbhelper.getReadableDatabase();
+
+		ArrayList<Food> foods = new ArrayList<Food>();
+		Cursor cursor = database.query(FoodTable.TABLE_FOOD,
+				FoodTable.ALL_COLUMNS_FOOD, null, null, null, null, null);
+
+		Log.i(TAG, "Returned" + cursor.getCount() + " rows");
+
+		if (cursor.getCount() > 0) {
+			while (cursor.moveToNext()) {
+				String name = cursor.getString(cursor
+						.getColumnIndex(FoodTable.COLUMN_NAME));
+				String imageName = cursor.getString(cursor
+						.getColumnIndex(FoodTable.COLUMN_IMAGE_NAME));
+				int calories = cursor.getInt(cursor
+						.getColumnIndex(FoodTable.COLUMN_CALORIES));
+				int id = cursor.getInt(cursor
+						.getColumnIndex(FoodTable.COLUMN_FOOD_ID));
+				Food food = new Food(name, calories, imageName);
+				food.setId(id);
+				foods.add(food);
+
+			}
+
+		}
+		cursor.close();
+		Log.i(TAG, "Filled" + foods.size() + " foods in arraylist");
+		dbhelper.close();
+		return foods;
 
 	}
 

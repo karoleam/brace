@@ -2,6 +2,8 @@ package com.flufighter.brace.ui;
 
 import com.flufighter.brace.R;
 import com.flufighter.brace.ui.detailFragments.ItemFoodFragment;
+import com.flufighter.brace.ui.detailFragments.ItemFoodResultFragment;
+import com.flufighter.brace.util.Constants;
 import com.flufighter.brace.util.MyFragmentManager;
 
 import android.os.Bundle;
@@ -56,10 +58,21 @@ public class ItemDetailActivity extends FragmentActivity {
 
 			Bundle extras = getIntent().getExtras();
 			if (extras != null) {
+				int fragmentId = extras.getInt(ARG_ITEM_ID);
+				Fragment fragment = MyFragmentManager
+						.getFragmentByType(fragmentId);
 
-				Fragment fragment = MyFragmentManager.getFragmentByType(extras
-						.getInt(ARG_ITEM_ID));
+				switch (fragmentId) {
+				case Constants.ID_FOOD_RESULT:
+					int foodId = extras.getInt(ItemFoodResultFragment.FOOD_ID);
+					Bundle bundle = new Bundle();
+					bundle.putInt(
+							ItemFoodResultFragment.FOOD_ID, foodId);
+					fragment.setArguments(bundle);
+					break;
+				default:
 
+				}
 				getSupportFragmentManager().beginTransaction()
 						.add(R.id.item_detail_container, fragment).commit();
 
@@ -78,8 +91,8 @@ public class ItemDetailActivity extends FragmentActivity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-//			NavUtils.navigateUpTo(this,
-//					new Intent(this, ItemListActivity.class));
+			// NavUtils.navigateUpTo(this,
+			// new Intent(this, ItemListActivity.class));
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

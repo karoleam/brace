@@ -1,12 +1,15 @@
 package com.flufighter.brace.ui;
 
 import com.flufighter.brace.R;
+import com.flufighter.brace.dblayout.FoodDataSource;
 import com.flufighter.brace.ui.detailFragments.ItemFoodFragment;
 import com.flufighter.brace.util.MyFragmentManager;
 
-
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -36,6 +39,7 @@ public class ItemMenuActivity extends FragmentActivity implements
 	 */
 	private boolean mTwoPane;
 	private final static String TAG = ItemMenuActivity.class.getSimpleName();
+	public final static String TWO_PANEL = "two_panel";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,9 @@ public class ItemMenuActivity extends FragmentActivity implements
 		setContentView(R.layout.activity_item_menu);
 		Log.w(TAG, "onCreate");
 		// Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
+		final SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		boolean isFirstTime = prefs.getBoolean("isFirstTime", true);
 
 		if (findViewById(R.id.item_detail_container) != null) {
 			Toast.makeText(this, "two fragments view", Toast.LENGTH_SHORT)
@@ -67,6 +74,20 @@ public class ItemMenuActivity extends FragmentActivity implements
 			Toast.makeText(this, "no two fragments view", Toast.LENGTH_SHORT)
 					.show();
 
+		if (!isFirstTime) {
+
+		} else {
+
+			Editor edit = prefs.edit();
+			edit.putBoolean("isFirstTime", false);
+			edit.putBoolean(TWO_PANEL, mTwoPane);
+
+			edit.commit();
+
+			FoodDataSource foodDataSource = new FoodDataSource(this);
+			foodDataSource.insertDefaultFoods();
+
+		}
 		// TODO: If exposing deep links into your app, handle intents here.
 	}
 
