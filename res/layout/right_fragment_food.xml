@@ -1,19 +1,19 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ItemDetailActivity"
     tools:ignore="MergeRootFrame" >
 
     <TextView
         android:id="@+id/textViewFood1"
         style="@style/Text"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
+        android:gravity="center"
         android:text="Large Text" />
 
     <GridView
@@ -25,6 +25,7 @@
         android:horizontalSpacing="10dp"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp" />
+        android:verticalSpacing="10dp" >
+    </GridView>
 
-</RelativeLayout>
+    </LinearLayout>
