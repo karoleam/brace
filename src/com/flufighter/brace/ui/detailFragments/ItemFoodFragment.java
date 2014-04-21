@@ -37,7 +37,8 @@ public class ItemFoodFragment extends Fragment {
 	GridView gridview;
 	private SharedPreferences prefs;
 	boolean isTwoPanel;
-	int calories = 1000;
+	int caloriesBurnt = 1000;
+	TextView textViewCaloriesBurnt;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -60,6 +61,10 @@ public class ItemFoodFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.right_fragment_food,
 				container, false);
 		gridview = (GridView) rootView.findViewById(R.id.gridview);
+		textViewCaloriesBurnt = (TextView) rootView
+				.findViewById(R.id.textViewFoodCaloriesBurnt);
+		textViewCaloriesBurnt.setText("You burnt " + caloriesBurnt
+				+ " calories, so you can eat:");
 
 		// int resID = getResources().getIdentifier(mDrawableName , "drawable",
 		// getPackageName());
@@ -78,13 +83,12 @@ public class ItemFoodFragment extends Fragment {
 
 					@Override
 					public void onFoodData(ArrayList<Food> foods) {
-						
-						for(Food food:foods)
-						{
-							food.setQuantity(calories/food.getCalories());
-							
+
+						for (Food food : foods) {
+							food.setQuantity(caloriesBurnt / food.getCalories());
+
 						}
-						
+
 						ImageAdapter imageAdapter = new ImageAdapter(
 								getActivity());
 						imageAdapter.setFoods(foods);

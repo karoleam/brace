@@ -61,8 +61,8 @@ public final class R {
         public static final int login_status_message=0x7f080003;
         public static final int password=0x7f080007;
         public static final int sign_in_button=0x7f080009;
-        public static final int textViewFood1=0x7f080014;
         public static final int textViewFood2=0x7f08001a;
+        public static final int textViewFoodCaloriesBurnt=0x7f080014;
         public static final int textViewFoodQuantity=0x7f080017;
         public static final int textViewFoodResult=0x7f080018;
         public static final int textViewForecastCity=0x7f08001d;
