@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.flufighter.brace.R;
@@ -47,6 +48,10 @@ public class ItemRunFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.right_fragment_run, container, false);
+        
+        
+        TextView currentRankText = (TextView)  rootView.findViewById(R.id.TextView02);
+        currentRankText.setText("200"); // <--------------make this dynamic
 
         // Show the dummy content as text in a TextView.
 //        if (mItem != null) {

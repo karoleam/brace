@@ -12,15 +12,33 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
-        android:text="Large Text" />
+        android:text="Today you walked:" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewRun"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp" />
 
     <ImageView
         android:id="@+id/imageViewRun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewRun"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="104dp"
+        android:layout_alignLeft="@+id/textViewRun"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="81dp"
         android:src="@drawable/bridge" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageViewRun"
+        android:layout_centerHorizontal="true"
+        android:text="X" />
 
 </RelativeLayout>

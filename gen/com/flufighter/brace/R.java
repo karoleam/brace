@@ -35,8 +35,10 @@ public final class R {
         public static final int sun=0x7f020011;
     }
     public static final class id {
-        public static final int action_forgot_password=0x7f080023;
-        public static final int chart=0x7f080022;
+        public static final int TextView01=0x7f080023;
+        public static final int TextView02=0x7f080021;
+        public static final int action_forgot_password=0x7f080025;
+        public static final int chart=0x7f080024;
         public static final int email=0x7f080006;
         public static final int gridview=0x7f080015;
         public static final int imageButtonMenu1=0x7f08000a;
@@ -52,7 +54,7 @@ public final class R {
         public static final int imageViewMain3=0x7f080011;
         public static final int imageViewMain4=0x7f080012;
         public static final int imageViewMain5=0x7f080013;
-        public static final int imageViewRun=0x7f080021;
+        public static final int imageViewRun=0x7f080022;
         public static final int item_detail_container=0x7f080000;
         public static final int item_list=0x7f080001;
         public static final int login=0x7f080008;
