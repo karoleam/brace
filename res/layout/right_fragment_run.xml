@@ -5,6 +5,15 @@
     tools:ignore="MergeRootFrame" >
 
     <TextView
+        android:id="@+id/result"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="78dp" />
+
+    <TextView
         android:id="@+id/textViewRun"
         style="@style/Text"
         android:layout_width="wrap_content"

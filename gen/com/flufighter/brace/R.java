@@ -35,8 +35,8 @@ public final class R {
         public static final int sun=0x7f020011;
     }
     public static final class id {
-        public static final int TextView01=0x7f080029;
-        public static final int TextView02=0x7f080027;
+        public static final int TextView01=0x7f08002a;
+        public static final int TextView02=0x7f080028;
         public static final int action_forgot_password=0x7f08002c;
         public static final int btn_api_foursquare=0x7f080009;
         public static final int btn_api_googleplus=0x7f080001;
@@ -62,11 +62,11 @@ public final class R {
         public static final int imageViewMain3=0x7f080016;
         public static final int imageViewMain4=0x7f080017;
         public static final int imageViewMain5=0x7f080018;
-        public static final int imageViewRun=0x7f080028;
+        public static final int imageViewRun=0x7f080029;
         public static final int item_detail_container=0x7f08000c;
         public static final int item_list=0x7f08000d;
         public static final int response_code=0x7f08000e;
-        public static final int result=0x7f08002a;
+        public static final int result=0x7f080026;
         public static final int textViewFood2=0x7f08001f;
         public static final int textViewFoodCaloriesBurnt=0x7f080019;
         public static final int textViewFoodQuantity=0x7f08001c;
@@ -76,7 +76,7 @@ public final class R {
         public static final int textViewForecastSuggestion=0x7f080025;
         public static final int textViewForecastTempeature=0x7f080024;
         public static final int textViewMain=0x7f080013;
-        public static final int textViewRun=0x7f080026;
+        public static final int textViewRun=0x7f080027;
         public static final int txt_oauth_foursquare=0x7f08000b;
         public static final int txt_oauth_googleplus=0x7f080003;
         public static final int txt_oauth_googletasks=0x7f080007;

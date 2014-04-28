@@ -146,13 +146,19 @@ private final String TAG=OAuth2Helper.class.getSimpleName();
 //		//return HTTP_TRANSPORT.createRequestFactory(loadCredential()).buildGetRequest(new GenericUrl(this.oauth2Params.getApiUrl())).execute().parseAsString();
 //	}
 
-	
+	public String executeMovesApiCall() throws IOException {
+		String accessToken=flow.loadCredential(oauth2Params.getUserId()).getAccessToken();
+		return get("https://jawbone.com/nudge/api/v.1.1/users/@me/moves",accessToken);
+		//return get(this.oauth2Params.getApiUrl(),accessToken);
+
+		//return HTTP_TRANSPORT.createRequestFactory(loadCredential()).buildGetRequest(new GenericUrl(this.oauth2Params.getApiUrl())).execute().parseAsString();
+	}
 	public String executeSleepApiCall() throws IOException {
 		String accessToken=flow.loadCredential(oauth2Params.getUserId()).getAccessToken();
 		Log.i(Constants.TAG,"access token" + accessToken);
 ///nudge/api/v.1.1/users/@me/sleeps   https://jawbone.com/nudge/api/v.1.1/users/@me//sleeps
 		Log.i(Constants.TAG,"Executing API call at url " + this.oauth2Params.getApiUrl());
-		return get(" https://jawbone.com/nudge/api/v.1.1/users/@me//sleeps",accessToken);
+		return get("https://jawbone.com/nudge/api/v.1.1/users/@me/sleeps",accessToken);
 		//return get(this.oauth2Params.getApiUrl(),accessToken);
 
 		//return HTTP_TRANSPORT.createRequestFactory(loadCredential()).buildGetRequest(new GenericUrl(this.oauth2Params.getApiUrl())).execute().parseAsString();

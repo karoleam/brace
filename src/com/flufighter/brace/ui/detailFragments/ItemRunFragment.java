@@ -1,7 +1,12 @@
 package com.flufighter.brace.ui.detailFragments;
 
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +15,9 @@ import android.widget.TextView;
 
 import com.flufighter.brace.R;
 import com.flufighter.brace.R.layout;
+import com.flufighter.brace.sample.oauth2.Constants;
+import com.flufighter.brace.sample.oauth2.OAuth2Helper;
+import com.flufighter.brace.sample.oauth2.Oauth2Params;
 import com.flufighter.brace.ui.ItemDetailActivity;
 
 /**
@@ -19,16 +27,9 @@ import com.flufighter.brace.ui.ItemDetailActivity;
  * on handsets.
  */
 public class ItemRunFragment extends Fragment {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
-   // 
-
-    /**
-     * The dummy content this fragment is presenting.
-     */
-    //private DummyContent.DummyItem mItem;
+	private SharedPreferences prefs;
+	private TextView txtApiResponse;
+	private OAuth2Helper oAuth2Helper;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -57,7 +58,46 @@ public class ItemRunFragment extends Fragment {
 //        if (mItem != null) {
 //            ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.content);
 //        }
+		this.txtApiResponse = (TextView) rootView.findViewById(R.id.result);
 
+		this.prefs = PreferenceManager
+				.getDefaultSharedPreferences(getActivity());
+		oAuth2Helper = new OAuth2Helper(this.prefs);
+		Constants.OAUTH2PARAMS = Oauth2Params.FOURSQUARE_OAUTH2;
+		// Performs an authorized API call.
+		performApiCall();
         return rootView;
     }
+    
+    /**
+	 * Performs an authorized API call.
+	 */
+	private void performApiCall() {
+		new ApiCallExecutor().execute();
+	}
+
+	private class ApiCallExecutor extends AsyncTask<Uri, Void, Void> {
+
+		String apiResponse = null;
+
+		@Override
+		protected Void doInBackground(Uri... params) {
+
+			try {
+				apiResponse = oAuth2Helper.executeMovesApiCall();
+				Log.i(Constants.TAG, "Received response from API : "
+						+ apiResponse);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				apiResponse = ex.getMessage();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			txtApiResponse.setText(apiResponse);
+		}
+
+	}
 }
