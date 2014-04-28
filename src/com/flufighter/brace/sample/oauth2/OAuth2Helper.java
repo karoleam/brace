@@ -145,7 +145,7 @@ private final String TAG=OAuth2Helper.class.getSimpleName();
 //
 //		//return HTTP_TRANSPORT.createRequestFactory(loadCredential()).buildGetRequest(new GenericUrl(this.oauth2Params.getApiUrl())).execute().parseAsString();
 //	}
-
+//https://jawbone.com/up/developer/endpoints/moves
 	public String executeMovesApiCall() throws IOException {
 		String accessToken=flow.loadCredential(oauth2Params.getUserId()).getAccessToken();
 		return get("https://jawbone.com/nudge/api/v.1.1/users/@me/moves",accessToken);

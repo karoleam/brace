@@ -28,6 +28,8 @@ public enum Oauth2Params {
 	//GOOGLE_PLUS("481521415971-oclaacvac1in3hs6udooqtfl69bp0qle.apps.googleusercontent.com","AIzaSyDi6TykEnw0zXmXVUFGviszMUWtM3dCm18","https://accounts.google.com/o/oauth2/token","https://accounts.google.com/o/oauth2/auth",BearerToken.authorizationHeaderAccessMethod(),PlusScopes.PLUS_ME,"http://localhost","plus","https://www.googleapis.com/plus/v1/people/me/activities/public"),
 	//GOOGLE_TASKS_OAUTH2("DERVVXJ4HTWTVK50HVGR514XKCRR3CZJQ2HS5VSE1LHXNXPY","Q1MTSRE0KVHJHZPHYCAWEKXLBFDVKDC55H11RZSFRS2LQMIK","https://accounts.google.com/o/oauth2/token","https://accounts.google.com/o/oauth2/auth",BearerToken.authorizationHeaderAccessMethod(),"https://www.googleapis.com/auth/tasks","http://localhost","tasks","https://www.googleapis.com/tasks/v1/users/@me/lists"),
 	//FOURSQUARE_OAUTH2("DERVVXJ4HTWTVK50HVGR514XKCRR3CZJQ2HS5VSE1LHXNXPY","Q1MTSRE0KVHJHZPHYCAWEKXLBFDVKDC55H11RZSFRS2LQMIK","https://foursquare.com/oauth2/access_token", "https://foursquare.com/oauth2/authenticate",FoursquareQueryParameterAccessMethod.getInstance(),"","x-oauthflow-foursquare","foursquare","https://api.foursquare.com/v2/users/self/checkins"); 
+	
+	//https://jawbone.com/up/developer/authentication
 	FOURSQUARE_OAUTH2("lU_-bFm6Ezk","e87c6f15a402184a9dc4ddaadcd6196f1f0949b3","https://jawbone.com/auth/oauth2/token", "https://jawbone.com/auth/oauth2/auth",FoursquareQueryParameterAccessMethod.getInstance(),"extended_read sleep_read move_read","https://localhost","jawbone","https://jawbone.com/nudge/api/v.1.1/users/@me"); 
 
     private String clientId;

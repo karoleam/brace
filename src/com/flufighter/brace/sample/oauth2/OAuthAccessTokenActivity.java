@@ -17,7 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
+//http://ddewaele.github.io/AndroidOauth2GoogleApiJavaClient/
 /**
  * Execute the OAuthRequestTokenTask to retrieve the request, and authorize the request.
  * After the request is authorized by the user, the callback URL will be intercepted here.
