@@ -6,10 +6,12 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -26,6 +28,8 @@ import com.flufighter.brace.ws.remote.OpenWeatherAPI;
  * {@link ItemDetailActivity} on handsets.
  */
 public class ItemForecastFragment extends Fragment {
+
+	private static String TAG = ItemForecastFragment.class.getSimpleName();
 	LocationManager locationManager;
 	LocationListener locationListener;
 	Location location;
@@ -56,7 +60,10 @@ public class ItemForecastFragment extends Fragment {
 		if (location != null) {
 			updateWeather();
 
-		}
+		} else
+			Toast.makeText(getActivity(), "Location is not available",
+					Toast.LENGTH_SHORT).show();
+
 		locationListener = new LocationListener() {
 
 			@Override
@@ -121,7 +128,7 @@ public class ItemForecastFragment extends Fragment {
 	}
 
 	private void updateWeather() {
-
+		Log.i(TAG, "updateWeather");
 		OpenWeatherAPI.getWeatherData(location, mQueue,
 				new OpenWeatherAPI.Callback() {
 					@Override
@@ -135,7 +142,7 @@ public class ItemForecastFragment extends Fragment {
 
 						ItemForecastFragment.this.textViewCity.setText(weather
 								.getCity());
-						
+
 						// weather condition codes
 						// http://bugs.openweathermap.org/projects/api/wiki/Weather_Condition_Codes
 						if (weather.getConditionCode() >= 800

@@ -34,52 +34,58 @@ public class OAuth2Helper {
 	private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
 	/** Global instance of the JSON factory. */
-	private static final JsonFactory JSON_FACTORY = new JacksonFactory(); 
+	private static final JsonFactory JSON_FACTORY = new JacksonFactory();
 
 	private final CredentialStore credentialStore;
-	
+
 	private AuthorizationCodeFlow flow;
-private final String TAG=OAuth2Helper.class.getSimpleName();
-	private Oauth2Params oauth2Params; 
-	
-	public OAuth2Helper(SharedPreferences sharedPreferences, Oauth2Params oauth2Params) {
-		Log.i(TAG,"OAuth2Helper");
-		this.credentialStore = new SharedPreferencesCredentialStore(sharedPreferences);
+	private final String TAG = OAuth2Helper.class.getSimpleName();
+	private Oauth2Params oauth2Params;
+
+	public OAuth2Helper(SharedPreferences sharedPreferences,
+			Oauth2Params oauth2Params) {
+		Log.i(TAG, "OAuth2Helper");
+		this.credentialStore = new SharedPreferencesCredentialStore(
+				sharedPreferences);
 		this.oauth2Params = oauth2Params;
-		
-		this.flow = new AuthorizationCodeFlow.Builder(oauth2Params.getAccessMethod() , HTTP_TRANSPORT, JSON_FACTORY, new GenericUrl(oauth2Params.getTokenServerUrl()), new ClientParametersAuthentication(oauth2Params.getClientId(),oauth2Params.getClientSecret()), oauth2Params.getClientId(), oauth2Params.getAuthorizationServerEncodedUrl()).setCredentialStore(this.credentialStore).build();
-		
-		
-//		try {
-//		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
-//		        new InputStreamReader(OAuth2Helper.class.getResourceAsStream("/client_secrets.json")));
-//		
-//		 this.flow = new GoogleAuthorizationCodeFlow.Builder(
-//			        HTTP_TRANSPORT, JSON_FACTORY, clientSecrets,
-//			        Collections.singleton(PlusScopes.PLUS_ME)).setCredentialStore(credentialStore).build();
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//		}
+
+		this.flow = new AuthorizationCodeFlow.Builder(
+				oauth2Params.getAccessMethod(), HTTP_TRANSPORT, JSON_FACTORY,
+				new GenericUrl(oauth2Params.getTokenServerUrl()),
+				new ClientParametersAuthentication(oauth2Params.getClientId(),
+						oauth2Params.getClientSecret()),
+				oauth2Params.getClientId(),
+				oauth2Params.getAuthorizationServerEncodedUrl())
+				.setCredentialStore(this.credentialStore).build();
+
 	}
 
 	public OAuth2Helper(SharedPreferences sharedPreferences) {
-		this(sharedPreferences,Constants.OAUTH2PARAMS);
+		this(sharedPreferences, Constants.OAUTH2PARAMS);
 	}
-	
+
 	public String getAuthorizationUrl() {
-		String authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(oauth2Params.getRederictUri()).setScopes(convertScopesToString(oauth2Params.getScope())).build();
+		String authorizationUrl = flow.newAuthorizationUrl()
+				.setRedirectUri(oauth2Params.getRederictUri())
+				.setScopes(convertScopesToString(oauth2Params.getScope()))
+				.build();
 		return authorizationUrl;
 	}
-	
-	public void retrieveAndStoreAccessToken(String authorizationCode) throws IOException {
-		Log.i(Constants.TAG,"retrieveAndStoreAccessToken for code " + authorizationCode);
-		TokenResponse tokenResponse = flow.newTokenRequest(authorizationCode).setScopes(convertScopesToString(oauth2Params.getScope())).setRedirectUri(oauth2Params.getRederictUri()).execute();
+
+	public void retrieveAndStoreAccessToken(String authorizationCode)
+			throws IOException {
+		Log.i(Constants.TAG, "retrieveAndStoreAccessToken for code "
+				+ authorizationCode);
+		TokenResponse tokenResponse = flow.newTokenRequest(authorizationCode)
+				.setScopes(convertScopesToString(oauth2Params.getScope()))
+				.setRedirectUri(oauth2Params.getRederictUri()).execute();
 		Log.i(Constants.TAG, "Found tokenResponse :");
 		Log.i(Constants.TAG, "Access Token : " + tokenResponse.getAccessToken());
-		Log.i(Constants.TAG, "Refresh Token : " + tokenResponse.getRefreshToken());
+		Log.i(Constants.TAG,
+				"Refresh Token : " + tokenResponse.getRefreshToken());
 		flow.createAndStoreCredential(tokenResponse, oauth2Params.getUserId());
 	}
-	
+
 	public static String convertStreamToString(InputStream is) {
 		/*
 		 * To convert the InputStream to String we use the
@@ -106,7 +112,9 @@ private final String TAG=OAuth2Helper.class.getSimpleName();
 		}
 		return sb.toString();
 	}
-	public static String get(String urlString, String accessToken) throws IOException {
+
+	public static String get(String urlString, String accessToken)
+			throws IOException {
 		URL url = new URL(urlString);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		// OutputStream out = null;
@@ -115,8 +123,8 @@ private final String TAG=OAuth2Helper.class.getSimpleName();
 			// Write the request.
 			connection.addRequestProperty("Content-Type:",
 					"text/plain; charset=utf-8");
-				connection.addRequestProperty("Authorization", 
-						"Bearer "+accessToken);
+			connection.addRequestProperty("Authorization", "Bearer "
+					+ accessToken);
 
 			connection.setRequestMethod("GET");
 
@@ -134,52 +142,31 @@ private final String TAG=OAuth2Helper.class.getSimpleName();
 				in.close();
 		}
 	}
-	
-//	public String executeApiCall() throws IOException {
-//		String accessToken=flow.loadCredential(oauth2Params.getUserId()).getAccessToken();
-//		Log.i(Constants.TAG,"access token" + accessToken);
-/////nudge/api/v.1.1/users/@me/sleeps   https://jawbone.com/nudge/api/v.1.1/users/@me//sleeps
-//		Log.i(Constants.TAG,"Executing API call at url " + this.oauth2Params.getApiUrl());
-//		return get(" https://jawbone.com/nudge/api/v.1.1/users/@me//sleeps",accessToken);
-//		//return get(this.oauth2Params.getApiUrl(),accessToken);
-//
-//		//return HTTP_TRANSPORT.createRequestFactory(loadCredential()).buildGetRequest(new GenericUrl(this.oauth2Params.getApiUrl())).execute().parseAsString();
-//	}
-//https://jawbone.com/up/developer/endpoints/moves
+
+	// https://jawbone.com/up/developer/endpoints/moves
 	public String executeMovesApiCall() throws IOException {
-		String accessToken=flow.loadCredential(oauth2Params.getUserId()).getAccessToken();
-		return get("https://jawbone.com/nudge/api/v.1.1/users/@me/moves",accessToken);
-		//return get(this.oauth2Params.getApiUrl(),accessToken);
-
-		//return HTTP_TRANSPORT.createRequestFactory(loadCredential()).buildGetRequest(new GenericUrl(this.oauth2Params.getApiUrl())).execute().parseAsString();
+		String accessToken = flow.loadCredential(oauth2Params.getUserId())
+				.getAccessToken();
+		return get("https://jawbone.com/nudge/api/v.1.1/users/@me/moves",
+				accessToken);
 	}
+
 	public String executeSleepApiCall() throws IOException {
-		String accessToken=flow.loadCredential(oauth2Params.getUserId()).getAccessToken();
-		Log.i(Constants.TAG,"access token" + accessToken);
-///nudge/api/v.1.1/users/@me/sleeps   https://jawbone.com/nudge/api/v.1.1/users/@me//sleeps
-		Log.i(Constants.TAG,"Executing API call at url " + this.oauth2Params.getApiUrl());
-		return get("https://jawbone.com/nudge/api/v.1.1/users/@me/sleeps",accessToken);
-		//return get(this.oauth2Params.getApiUrl(),accessToken);
+		String accessToken = flow.loadCredential(oauth2Params.getUserId())
+				.getAccessToken();
 
-		//return HTTP_TRANSPORT.createRequestFactory(loadCredential()).buildGetRequest(new GenericUrl(this.oauth2Params.getApiUrl())).execute().parseAsString();
+		return get("https://jawbone.com/nudge/api/v.1.1/users/@me/sleeps",
+				accessToken);
 	}
-//	public String executeApiPostCall() throws IOException {
-//		Location loc = new Location("d");
-//		loc.setLatitude(10);
-//		loc.setLongitude(10);
-//		HttpContent httpContent = new JsonHttpContent(JSON_FACTORY, loc).setWrapperKey("data"); 
-//		return HTTP_TRANSPORT.createRequestFactory(loadCredential()).buildPostRequest(new GenericUrl(this.oauth2Params.getApiUrl()),httpContent).execute().parseAsString();
-//	}
 
-	
 	public Credential loadCredential() throws IOException {
 		return flow.loadCredential(oauth2Params.getUserId());
 	}
 
 	public void clearCredentials() throws IOException {
-		 flow.getCredentialStore().delete(oauth2Params.getUserId(), null);		
+		flow.getCredentialStore().delete(oauth2Params.getUserId(), null);
 	}
-	
+
 	private Collection<String> convertScopesToString(String scopesConcat) {
 		String[] scopes = scopesConcat.split(",");
 		Collection<String> collection = new ArrayList<String>();
