@@ -2,11 +2,19 @@ package com.flufighter.brace.ui.detailFragments;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +26,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.flufighter.brace.R;
 import com.flufighter.brace.R.layout;
 import com.flufighter.brace.entities.Food;
+import com.flufighter.brace.entities.Weather;
+import com.flufighter.brace.sample.oauth2.OAuth2Helper;
+import com.flufighter.brace.sample.oauth2.Oauth2Params;
 import com.flufighter.brace.tasks.GetFoodsAsyncTask;
 import com.flufighter.brace.ui.ItemDetailActivity;
 import com.flufighter.brace.ui.ItemMenuActivity;
 import com.flufighter.brace.ui.adapter.ImageAdapter;
 import com.flufighter.brace.util.Constants;
 import com.flufighter.brace.util.MyFragmentManager;
+import com.flufighter.brace.ws.remote.JawBoneAPIHelper;
+import com.flufighter.brace.ws.remote.OpenWeatherAPI.Callback;
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either
@@ -35,9 +52,11 @@ import com.flufighter.brace.util.MyFragmentManager;
  */
 public class ItemFoodFragment extends Fragment {
 	GridView gridview;
+	private static String TAG = ItemFoodFragment.class.getSimpleName();
 	private SharedPreferences prefs;
+	private OAuth2Helper oAuth2Helper;
 	boolean isTwoPanel;
-	int caloriesBurnt = 1000;
+	int caloriesBurnt = 0;
 	TextView textViewCaloriesBurnt;
 
 	/**
@@ -63,21 +82,58 @@ public class ItemFoodFragment extends Fragment {
 		gridview = (GridView) rootView.findViewById(R.id.gridview);
 		textViewCaloriesBurnt = (TextView) rootView
 				.findViewById(R.id.textViewFoodCaloriesBurnt);
+
+		updateUI();
+
+		oAuth2Helper = new OAuth2Helper(this.prefs);
+		com.flufighter.brace.sample.oauth2.Constants.OAUTH2PARAMS = Oauth2Params.FOURSQUARE_OAUTH2;
+		// Performs an authorized API call.
+		performApiCall();
+		return rootView;
+	}
+
+	/**
+	 * Performs an authorized API call.
+	 */
+	private void performApiCall() {
+		new ApiCallExecutor().execute();
+	}
+
+	private class ApiCallExecutor extends AsyncTask<Uri, Void, Float> {
+
+		String apiResponse = null;
+
+		@Override
+		protected Float doInBackground(Uri... params) {
+			float result = -1;
+			try {
+				apiResponse = oAuth2Helper.executeMovesApiCall();
+
+				Log.i(TAG, "Received response from API : " + apiResponse);
+				result = JawBoneAPIHelper.parseJsonMovesApiCall(apiResponse,
+						"calories");
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				apiResponse = ex.getMessage();
+			}
+			return result;
+		}
+
+		@Override
+		protected void onPostExecute(Float result) {
+			// txtApiResponse.setText(String.valueOf(parseJsonMovesApiCall(
+			// apiResponse, "calories")));
+
+			caloriesBurnt = result.intValue();
+			updateUI();
+		}
+
+	}
+
+	private void updateUI() {
 		textViewCaloriesBurnt.setText("You burnt " + caloriesBurnt
 				+ " calories, so you can eat:");
 
-		// int resID = getResources().getIdentifier(mDrawableName , "drawable",
-		// getPackageName());
-
-		// Show the dummy content as text in a TextView.
-		// if (mItem != null) {
-		// ((TextView)
-		// rootView.findViewById(R.id.item_detail)).setText(mItem.content);
-		// }
-
-		// imageButtonFood1=(ImageButton)
-		// rootView.findViewById(R.id.imageButtonFood1);
-		// imageButtonFood1.setImageDrawable(getResources().getDrawable(R.drawable.food_hamburguer));
 		GetFoodsAsyncTask task = new GetFoodsAsyncTask(this,
 				new GetFoodsAsyncTask.Callback() {
 
@@ -137,8 +193,9 @@ public class ItemFoodFragment extends Fragment {
 
 					}
 				});
+
 		task.execute();
 
-		return rootView;
 	}
+
 }
