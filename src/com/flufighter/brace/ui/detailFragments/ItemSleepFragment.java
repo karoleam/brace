@@ -1,15 +1,20 @@
 package com.flufighter.brace.ui.detailFragments;
 
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import com.flufighter.brace.R;
 import com.flufighter.brace.R.layout;
+import com.flufighter.brace.sample.oauth2.Constants;
+import com.flufighter.brace.sample.oauth2.OAuth2Helper;
+import com.flufighter.brace.sample.oauth2.Oauth2Params;
 import com.flufighter.brace.ui.ItemDetailActivity;
 
 import android.app.Activity;
@@ -23,8 +28,10 @@ import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
@@ -54,6 +61,9 @@ public class ItemSleepFragment extends Fragment {
 	private DefaultRenderer mRenderer = new DefaultRenderer();
 
 	private GraphicalView mChartView;
+	private SharedPreferences prefs;
+	private TextView txtApiResponse;
+	private OAuth2Helper oAuth2Helper;
 
 	/**
 	 * The dummy content this fragment is presenting.
@@ -96,67 +106,111 @@ public class ItemSleepFragment extends Fragment {
 			mRenderer.addSeriesRenderer(renderer);
 		}
 
-		
 		if (mChartView == null) {
-			LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.chart);
-			mChartView = ChartFactory.getPieChartView(getActivity(), mSeries, mRenderer);
+			LinearLayout layout = (LinearLayout) rootView
+					.findViewById(R.id.chart);
+			mChartView = ChartFactory.getPieChartView(getActivity(), mSeries,
+					mRenderer);
 			mRenderer.setClickEnabled(true);
-			mRenderer.setSelectableBuffer(10);	
-		
-		
-		mChartView.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				SeriesSelection seriesSelection = mChartView
-						.getCurrentSeriesAndPoint();
+			mRenderer.setSelectableBuffer(10);
 
-				if (seriesSelection == null) {
-					Toast.makeText(getActivity(), //<--------------------------------------
-							"No chart element was clicked",
-							Toast.LENGTH_SHORT).show();
-				} else {
-					Toast.makeText(
-							getActivity(), //<--------------------------------------
-							"Chart element data point index "
-									+ (seriesSelection.getPointIndex() + 1)
-									+ " was clicked" + " point value="
-									+ seriesSelection.getValue(),
-							Toast.LENGTH_SHORT).show();
+			mChartView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					SeriesSelection seriesSelection = mChartView
+							.getCurrentSeriesAndPoint();
+
+					if (seriesSelection == null) {
+						Toast.makeText(
+								getActivity(), // <--------------------------------------
+								"No chart element was clicked",
+								Toast.LENGTH_SHORT).show();
+					} else {
+						Toast.makeText(
+								getActivity(), // <--------------------------------------
+								"Chart element data point index "
+										+ (seriesSelection.getPointIndex() + 1)
+										+ " was clicked" + " point value="
+										+ seriesSelection.getValue(),
+								Toast.LENGTH_SHORT).show();
+					}
 				}
-			}
-		});
-		
-		
-		mChartView.setOnLongClickListener(new View.OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				SeriesSelection seriesSelection = mChartView
-						.getCurrentSeriesAndPoint();
-				if (seriesSelection == null) {
-					Toast.makeText(getActivity(), //<--------------------------------------
-							"No chart element was long pressed",
-							Toast.LENGTH_SHORT);
-					return false;
-				} else {
-					Toast.makeText(getActivity(), //<--------------------------------------
-							"Chart element data point index "
-									+ seriesSelection.getPointIndex()
-									+ " was long pressed",
-							Toast.LENGTH_SHORT);
-					return true;
+			});
+
+			mChartView.setOnLongClickListener(new View.OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View v) {
+					SeriesSelection seriesSelection = mChartView
+							.getCurrentSeriesAndPoint();
+					if (seriesSelection == null) {
+						Toast.makeText(
+								getActivity(), // <--------------------------------------
+								"No chart element was long pressed",
+								Toast.LENGTH_SHORT);
+						return false;
+					} else {
+						Toast.makeText(
+								getActivity(), // <--------------------------------------
+								"Chart element data point index "
+										+ seriesSelection.getPointIndex()
+										+ " was long pressed",
+								Toast.LENGTH_SHORT);
+						return true;
+					}
 				}
-			}
-		});
-		
-		layout.addView(mChartView, new LayoutParams(
-				LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-		
-		}else {
+			});
+
+			layout.addView(mChartView, new LayoutParams(
+					LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+
+		} else {
 			mChartView.repaint();
 		}
+
+		
+		
+		this.txtApiResponse = (TextView) rootView.findViewById(R.id.result);
+
+		this.prefs = PreferenceManager
+				.getDefaultSharedPreferences(getActivity());
+		oAuth2Helper = new OAuth2Helper(this.prefs);
+		Constants.OAUTH2PARAMS = Oauth2Params.FOURSQUARE_OAUTH2;
+		// Performs an authorized API call.
+		performApiCall();
+
 		return rootView;
 	}
 
+	/**
+	 * Performs an authorized API call.
+	 */
+	private void performApiCall() {
+		new ApiCallExecutor().execute();
+	}
 
+	private class ApiCallExecutor extends AsyncTask<Uri, Void, Void> {
+
+		String apiResponse = null;
+
+		@Override
+		protected Void doInBackground(Uri... params) {
+
+			try {
+				apiResponse = oAuth2Helper.executeSleepApiCall();
+				Log.i(Constants.TAG, "Received response from API : "
+						+ apiResponse);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				apiResponse = ex.getMessage();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			txtApiResponse.setText(apiResponse);
+		}
+
+	}
 
 }
