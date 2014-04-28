@@ -15,9 +15,9 @@ import android.widget.TextView;
 
 import com.flufighter.brace.R;
 import com.flufighter.brace.R.layout;
-import com.flufighter.brace.sample.oauth2.OAuth2Helper;
-import com.flufighter.brace.sample.oauth2.Oauth2Params;
 import com.flufighter.brace.ui.ItemDetailActivity;
+import com.flufighter.brace.ws.remote.oauth2.OAuth2Helper;
+import com.flufighter.brace.ws.remote.oauth2.Oauth2Params;
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either

@@ -1,4 +1,4 @@
-package com.flufighter.brace.sample.oauth2.foursquare;
+package com.flufighter.brace.ws.remote.oauth2;
 
 import java.io.IOException;
 

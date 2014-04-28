@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.flufighter.brace.sample.oauth2.IntroScreen"
+            android:name="com.flufighter.brace.ui.LoginActivity"
             android:label="@string/app_name" >
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,13 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+       
         <activity
-            android:name="com.flufighter.brace.sample.oauth2.MainScreen"
-            android:label="@string/app_name" >
-           
-        </activity>
-        <activity
-            android:name="com.flufighter.brace.sample.oauth2.OAuthAccessTokenActivity"
+            android:name="com.flufighter.brace.ws.remote.oauth2.OAuthAccessTokenActivity"
             android:launchMode="singleTask" >
 >
             <intent-filter>
@@ -58,11 +54,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ItemMenuActivity" />
         </activity>
-        <activity
-            android:name="com.flufighter.brace.ui.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
-        </activity>
+     
     </application>
 
 </manifest>

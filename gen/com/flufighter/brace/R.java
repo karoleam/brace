@@ -35,55 +35,41 @@ public final class R {
         public static final int sun=0x7f020011;
     }
     public static final class id {
-        public static final int TextView01=0x7f08002a;
-        public static final int TextView02=0x7f080028;
-        public static final int action_forgot_password=0x7f08002c;
-        public static final int btn_api_foursquare=0x7f080009;
-        public static final int btn_api_googleplus=0x7f080001;
-        public static final int btn_api_googletasks=0x7f080005;
-        public static final int btn_clear_foursquare=0x7f08000a;
-        public static final int btn_clear_googleplus=0x7f080002;
-        public static final int btn_clear_googletasks=0x7f080006;
-        public static final int btn_oauth_foursquare=0x7f080008;
-        public static final int btn_oauth_googleplus=0x7f080000;
-        public static final int btn_oauth_googletasks=0x7f080004;
-        public static final int chart=0x7f08002b;
-        public static final int gridview=0x7f08001b;
-        public static final int imageButtonMenu1=0x7f08000f;
-        public static final int imageButtonMenu2=0x7f080010;
-        public static final int imageButtonMenu3=0x7f080011;
-        public static final int imageButtonMenu4=0x7f080012;
-        public static final int imageViewFood1=0x7f080022;
-        public static final int imageViewFood2=0x7f08001f;
-        public static final int imageViewFood3=0x7f080021;
-        public static final int imageViewFoodImage=0x7f08001c;
-        public static final int imageViewMain1=0x7f080014;
-        public static final int imageViewMain2=0x7f080015;
-        public static final int imageViewMain3=0x7f080016;
-        public static final int imageViewMain4=0x7f080017;
-        public static final int imageViewMain5=0x7f080018;
-        public static final int imageViewRun=0x7f080029;
-        public static final int item_detail_container=0x7f08000c;
-        public static final int item_list=0x7f08000d;
-        public static final int response_code=0x7f08000e;
-        public static final int result=0x7f080019;
-        public static final int textViewFood2=0x7f080020;
-        public static final int textViewFoodCaloriesBurnt=0x7f08001a;
-        public static final int textViewFoodQuantity=0x7f08001d;
-        public static final int textViewFoodResult=0x7f08001e;
-        public static final int textViewForecastCity=0x7f080023;
-        public static final int textViewForecastDescription=0x7f080024;
-        public static final int textViewForecastSuggestion=0x7f080026;
-        public static final int textViewForecastTempeature=0x7f080025;
-        public static final int textViewMain=0x7f080013;
-        public static final int textViewRun=0x7f080027;
-        public static final int txt_oauth_foursquare=0x7f08000b;
-        public static final int txt_oauth_googleplus=0x7f080003;
-        public static final int txt_oauth_googletasks=0x7f080007;
+        public static final int TextView01=0x7f08001d;
+        public static final int TextView02=0x7f08001b;
+        public static final int action_forgot_password=0x7f08001f;
+        public static final int chart=0x7f08001e;
+        public static final int gridview=0x7f08000e;
+        public static final int imageButtonMenu1=0x7f080002;
+        public static final int imageButtonMenu2=0x7f080003;
+        public static final int imageButtonMenu3=0x7f080004;
+        public static final int imageButtonMenu4=0x7f080005;
+        public static final int imageViewFood1=0x7f080015;
+        public static final int imageViewFood2=0x7f080012;
+        public static final int imageViewFood3=0x7f080014;
+        public static final int imageViewFoodImage=0x7f08000f;
+        public static final int imageViewMain1=0x7f080007;
+        public static final int imageViewMain2=0x7f080008;
+        public static final int imageViewMain3=0x7f080009;
+        public static final int imageViewMain4=0x7f08000a;
+        public static final int imageViewMain5=0x7f08000b;
+        public static final int imageViewRun=0x7f08001c;
+        public static final int item_detail_container=0x7f080000;
+        public static final int item_list=0x7f080001;
+        public static final int result=0x7f08000c;
+        public static final int textViewFood2=0x7f080013;
+        public static final int textViewFoodCaloriesBurnt=0x7f08000d;
+        public static final int textViewFoodQuantity=0x7f080010;
+        public static final int textViewFoodResult=0x7f080011;
+        public static final int textViewForecastCity=0x7f080016;
+        public static final int textViewForecastDescription=0x7f080017;
+        public static final int textViewForecastSuggestion=0x7f080019;
+        public static final int textViewForecastTempeature=0x7f080018;
+        public static final int textViewMain=0x7f080006;
+        public static final int textViewRun=0x7f08001a;
     }
     public static final class layout {
-        public static final int activity_intro=0x7f030000;
-        public static final int activity_item_detail=0x7f030001;
+        public static final int activity_item_detail=0x7f030000;
         /** 
     Layout alias to replace the single-pane version of the layout with a
     two-pane version on Large screens.
@@ -99,17 +85,16 @@ public final class R {
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     
          */
-        public static final int activity_item_menu=0x7f030002;
-        public static final int activity_item_twopane=0x7f030003;
-        public static final int activity_main=0x7f030004;
-        public static final int left_menu_fragment=0x7f030005;
-        public static final int main=0x7f030006;
-        public static final int right_fragment_food=0x7f030007;
-        public static final int right_fragment_food_item=0x7f030008;
-        public static final int right_fragment_food_result=0x7f030009;
-        public static final int right_fragment_forecast=0x7f03000a;
-        public static final int right_fragment_run=0x7f03000b;
-        public static final int right_fragment_sleep=0x7f03000c;
+        public static final int activity_item_menu=0x7f030001;
+        public static final int activity_item_twopane=0x7f030002;
+        public static final int left_menu_fragment=0x7f030003;
+        public static final int main=0x7f030004;
+        public static final int right_fragment_food=0x7f030005;
+        public static final int right_fragment_food_item=0x7f030006;
+        public static final int right_fragment_food_result=0x7f030007;
+        public static final int right_fragment_forecast=0x7f030008;
+        public static final int right_fragment_run=0x7f030009;
+        public static final int right_fragment_sleep=0x7f03000a;
     }
     public static final class menu {
         public static final int login=0x7f070000;

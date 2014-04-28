@@ -1,6 +1,5 @@
-package com.flufighter.brace.sample.oauth2;
+package com.flufighter.brace.ws.remote.oauth2;
 
-import com.flufighter.brace.sample.oauth2.foursquare.JawBoneQueryParameterAccessMethod;
 import com.google.api.client.auth.oauth2.BearerToken;
 import com.google.api.client.auth.oauth2.Credential.AccessMethod;
 import com.google.api.services.plus.PlusScopes;

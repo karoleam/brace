@@ -34,8 +34,6 @@ import com.flufighter.brace.R;
 import com.flufighter.brace.R.layout;
 import com.flufighter.brace.entities.Food;
 import com.flufighter.brace.entities.Weather;
-import com.flufighter.brace.sample.oauth2.OAuth2Helper;
-import com.flufighter.brace.sample.oauth2.Oauth2Params;
 import com.flufighter.brace.tasks.GetFoodsAsyncTask;
 import com.flufighter.brace.ui.ItemDetailActivity;
 import com.flufighter.brace.ui.ItemMenuActivity;
@@ -44,6 +42,8 @@ import com.flufighter.brace.util.Constants;
 import com.flufighter.brace.util.MyFragmentManager;
 import com.flufighter.brace.ws.remote.JawBoneAPIHelper;
 import com.flufighter.brace.ws.remote.OpenWeatherAPI.Callback;
+import com.flufighter.brace.ws.remote.oauth2.OAuth2Helper;
+import com.flufighter.brace.ws.remote.oauth2.Oauth2Params;
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either

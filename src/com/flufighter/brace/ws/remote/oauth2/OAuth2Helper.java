@@ -1,4 +1,4 @@
-package com.flufighter.brace.sample.oauth2;
+package com.flufighter.brace.ws.remote.oauth2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,7 +15,6 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.util.Log;
 
-import com.flufighter.brace.sample.oauth2.store.SharedPreferencesCredentialStore;
 import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
 import com.google.api.client.auth.oauth2.ClientParametersAuthentication;
 import com.google.api.client.auth.oauth2.Credential;
@@ -74,19 +74,17 @@ public class OAuth2Helper {
 
 	public void retrieveAndStoreAccessToken(String authorizationCode)
 			throws IOException {
-		Log.i(TAG, "retrieveAndStoreAccessToken for code "
-				+ authorizationCode);
+		Log.i(TAG, "retrieveAndStoreAccessToken for code " + authorizationCode);
 		TokenResponse tokenResponse = flow.newTokenRequest(authorizationCode)
 				.setScopes(convertScopesToString(oauth2Params.getScope()))
 				.setRedirectUri(oauth2Params.getRederictUri()).execute();
 		Log.i(TAG, "Found tokenResponse :");
 		Log.i(TAG, "Access Token : " + tokenResponse.getAccessToken());
-		Log.i(TAG,
-				"Refresh Token : " + tokenResponse.getRefreshToken());
+		Log.i(TAG, "Refresh Token : " + tokenResponse.getRefreshToken());
 		flow.createAndStoreCredential(tokenResponse, oauth2Params.getUserId());
 	}
 
-	public static String convertStreamToString(InputStream is) {
+	private String convertStreamToString(InputStream is) {
 		/*
 		 * To convert the InputStream to String we use the
 		 * BufferedReader.readLine() method. We iterate until the BufferedReader
@@ -113,8 +111,7 @@ public class OAuth2Helper {
 		return sb.toString();
 	}
 
-	public static String get(String urlString, String accessToken)
-			throws IOException {
+	private String get(String urlString, String accessToken) throws IOException {
 		URL url = new URL(urlString);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		// OutputStream out = null;
@@ -172,5 +169,11 @@ public class OAuth2Helper {
 		Collection<String> collection = new ArrayList<String>();
 		Collections.addAll(collection, scopes);
 		return collection;
+	}
+
+	public String extractCodeFromUrl(String url) throws Exception {
+		String encodedCode = url.substring(Oauth2Params.JAWBONE_OAUTH2
+				.getRederictUri().length() + 7, url.length());
+		return URLDecoder.decode(encodedCode, "UTF-8");
 	}
 }
