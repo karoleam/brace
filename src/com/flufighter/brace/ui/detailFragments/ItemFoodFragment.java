@@ -86,7 +86,6 @@ public class ItemFoodFragment extends Fragment {
 		updateUI();
 
 		oAuth2Helper = new OAuth2Helper(this.prefs);
-		com.flufighter.brace.sample.oauth2.Constants.OAUTH2PARAMS = Oauth2Params.FOURSQUARE_OAUTH2;
 		// Performs an authorized API call.
 		performApiCall();
 		return rootView;

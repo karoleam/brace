@@ -16,7 +16,7 @@ public class MainScreen extends Activity {
 	private SharedPreferences prefs;
 	private TextView txtApiResponse;
 	private OAuth2Helper oAuth2Helper;
-	 
+	 private static String TAG=MainScreen.class.getSimpleName();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,7 +26,6 @@ public class MainScreen extends Activity {
 
 		this.txtApiResponse = (TextView) findViewById(R.id.response_code);
 		this.txtApiResponse.setText("wating for data");
-		Constants.OAUTH2PARAMS=Oauth2Params.FOURSQUARE_OAUTH2;
 		// Performs an authorized API call.
 		performApiCall();
 
@@ -48,7 +47,7 @@ public class MainScreen extends Activity {
 			
 			try {
 				apiResponse = oAuth2Helper.executeSleepApiCall();
-				Log.i(Constants.TAG, "Received response from API : " + apiResponse);
+				Log.i(TAG, "Received response from API : " + apiResponse);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				apiResponse=ex.getMessage();

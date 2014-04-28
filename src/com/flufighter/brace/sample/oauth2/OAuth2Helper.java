@@ -61,7 +61,7 @@ public class OAuth2Helper {
 	}
 
 	public OAuth2Helper(SharedPreferences sharedPreferences) {
-		this(sharedPreferences, Constants.OAUTH2PARAMS);
+		this(sharedPreferences, Oauth2Params.JAWBONE_OAUTH2);
 	}
 
 	public String getAuthorizationUrl() {
@@ -74,14 +74,14 @@ public class OAuth2Helper {
 
 	public void retrieveAndStoreAccessToken(String authorizationCode)
 			throws IOException {
-		Log.i(Constants.TAG, "retrieveAndStoreAccessToken for code "
+		Log.i(TAG, "retrieveAndStoreAccessToken for code "
 				+ authorizationCode);
 		TokenResponse tokenResponse = flow.newTokenRequest(authorizationCode)
 				.setScopes(convertScopesToString(oauth2Params.getScope()))
 				.setRedirectUri(oauth2Params.getRederictUri()).execute();
-		Log.i(Constants.TAG, "Found tokenResponse :");
-		Log.i(Constants.TAG, "Access Token : " + tokenResponse.getAccessToken());
-		Log.i(Constants.TAG,
+		Log.i(TAG, "Found tokenResponse :");
+		Log.i(TAG, "Access Token : " + tokenResponse.getAccessToken());
+		Log.i(TAG,
 				"Refresh Token : " + tokenResponse.getRefreshToken());
 		flow.createAndStoreCredential(tokenResponse, oauth2Params.getUserId());
 	}

@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
-import com.flufighter.brace.sample.oauth2.Constants;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.auth.oauth2.CredentialStore;
 
@@ -24,6 +23,7 @@ public class SharedPreferencesCredentialStore implements CredentialStore {
 	private static final String EXPIRES_IN = "_expires_in";
 	private static final String REFRESH_TOKEN = "_refresh_token";
 	private static final String SCOPE = "_scope";
+	private static final String TAG = SharedPreferencesCredentialStore.class.getSimpleName();
 
 	private SharedPreferences prefs;
 	
@@ -36,8 +36,8 @@ public class SharedPreferencesCredentialStore implements CredentialStore {
 	 */
 	public boolean load(String userId, Credential credential)
 			throws IOException {
-		Log.i(Constants.TAG,"Loading credential for userId " + userId);
-		Log.i(Constants.TAG,"Loaded access token = "  + prefs.getString(userId + ACCESS_TOKEN, ""));
+		Log.i(TAG,"Loading credential for userId " + userId);
+		Log.i(TAG,"Loaded access token = "  + prefs.getString(userId + ACCESS_TOKEN, ""));
 		
 		credential.setAccessToken(prefs.getString(userId + ACCESS_TOKEN, null));
 		
@@ -58,8 +58,8 @@ public class SharedPreferencesCredentialStore implements CredentialStore {
 	 * Google APIs usually return both an access token, refresh token and expiriation info.
 	 */
 	public void store(String userId, Credential credential) throws IOException {
-		Log.i(Constants.TAG,"Storing credential for userId " + userId);
-		Log.i(Constants.TAG,"Access Token = " + credential.getAccessToken());
+		Log.i(TAG,"Storing credential for userId " + userId);
+		Log.i(TAG,"Access Token = " + credential.getAccessToken());
 		Editor editor = prefs.edit();
 		
 		editor.putString(userId + ACCESS_TOKEN,credential.getAccessToken());
@@ -80,7 +80,7 @@ public class SharedPreferencesCredentialStore implements CredentialStore {
 	 * 
 	 */
 	public void delete(String userId, Credential credential) throws IOException {
-		Log.i(Constants.TAG,"Deleting credential for userId " + userId);
+		Log.i(TAG,"Deleting credential for userId " + userId);
 		Editor editor = prefs.edit();
 		editor.remove(userId + ACCESS_TOKEN);
 		editor.remove(userId + EXPIRES_IN);

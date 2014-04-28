@@ -17,138 +17,138 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
 //http://ddewaele.github.io/AndroidOauth2GoogleApiJavaClient/
 /**
- * Execute the OAuthRequestTokenTask to retrieve the request, and authorize the request.
- * After the request is authorized by the user, the callback URL will be intercepted here.
+ * Execute the OAuthRequestTokenTask to retrieve the request, and authorize the
+ * request. After the request is authorized by the user, the callback URL will
+ * be intercepted here.
  * 
  */
 @SuppressLint("SetJavaScriptEnabled")
-public class OAuthAccessTokenActivity extends Activity{
-
+public class OAuthAccessTokenActivity extends Activity {
+	private static String TAG = OAuthAccessTokenActivity.class.getSimpleName();
 	private SharedPreferences prefs;
 	private OAuth2Helper oAuth2Helper;
+	private WebView webview;
+	boolean handled = false;
+	private boolean hasLoggedIn;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        Log.i(Constants.TAG, "Starting task to retrieve request token.");
-        Constants.OAUTH2PARAMS = Oauth2Params.FOURSQUARE_OAUTH2;
-        this.prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        oAuth2Helper = new OAuth2Helper(this.prefs);
-        webview = new WebView(this);
-        webview.getSettings().setJavaScriptEnabled(true);  
-        webview.setVisibility(View.VISIBLE);
-        setContentView(webview);
-        
-        String authorizationUrl = oAuth2Helper.getAuthorizationUrl();
-        Log.i(Constants.TAG, "Using authorizationUrl = " + authorizationUrl);
-        
-        handled=false;
-        
-        webview.setWebViewClient(new WebViewClient() {  
+		Log.i(TAG, "Starting task to retrieve request token.");
+		this.prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		oAuth2Helper = new OAuth2Helper(this.prefs);
+		webview = new WebView(this);
+		webview.getSettings().setJavaScriptEnabled(true);
+		webview.setVisibility(View.VISIBLE);
+		setContentView(webview);
 
-        	@Override  
-            public void onPageStarted(WebView view, String url,Bitmap bitmap)  {  
-        		Log.d(Constants.TAG, "onPageStarted : " + url + " handled = " + handled);
-            }
-        	@Override  
-            public void onPageFinished(final WebView view, final String url)  {
-        		Log.d(Constants.TAG, "onPageFinished : " + url + " handled = " + handled);
-        		
-        		if (url.startsWith(Constants.OAUTH2PARAMS.getRederictUri())) {
-	        		webview.setVisibility(View.INVISIBLE);
-	        		
-	        		if (!handled) {
-	        			new ProcessToken(url,oAuth2Helper).execute();
-	        		}
-        		} else {
-        			webview.setVisibility(View.VISIBLE);
-        		}
-            }
+		String authorizationUrl = oAuth2Helper.getAuthorizationUrl();
+		Log.i(TAG, "Using authorizationUrl = " + authorizationUrl);
 
-        });  
-        
-        webview.loadUrl(authorizationUrl);		
+		handled = false;
+
+		webview.setWebViewClient(new WebViewClient() {
+
+			@Override
+			public void onPageStarted(WebView view, String url, Bitmap bitmap) {
+				Log.d(TAG, "onPageStarted : " + url + " handled = "
+						+ handled);
+			}
+
+			@Override
+			public void onPageFinished(final WebView view, final String url) {
+				Log.d(TAG, "onPageFinished : " + url + " handled = "
+						+ handled);
+
+				if (url.startsWith(Oauth2Params.JAWBONE_OAUTH2.getRederictUri())) {
+					webview.setVisibility(View.INVISIBLE);
+
+					if (!handled) {
+						new ProcessToken(url).execute();
+					}
+				} else {
+					webview.setVisibility(View.VISIBLE);
+				}
+			}
+
+		});
+
+		webview.loadUrl(authorizationUrl);
 	}
-	
-	private WebView  webview;
-	
-	boolean handled=false;
-	private boolean hasLoggedIn;
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
-		Log.i(Constants.TAG, "onResume called with " + hasLoggedIn);
+		Log.i(TAG, "onResume called with " + hasLoggedIn);
 		if (hasLoggedIn) {
 			finish();
 		}
 	}
 
-	
 	private class ProcessToken extends AsyncTask<Uri, Void, Void> {
 
 		String url;
-		boolean startActivity=false;
-		
+		boolean startActivity = false;
 
-		public ProcessToken(String url,OAuth2Helper oAuth2Helper) {
-			this.url=url;
+		public ProcessToken(String url) {
+			this.url = url;
 		}
-		
+
 		@Override
-		protected Void doInBackground(Uri...params) {
+		protected Void doInBackground(Uri... params) {
 
-			
-			if (url.startsWith(Constants.OAUTH2PARAMS.getRederictUri())) {
-				Log.i(Constants.TAG, "Redirect URL found" + url);
-				handled=true;
-        		try {
-        			if (url.indexOf("code=")!=-1) {
-            			String authorizationCode = extractCodeFromUrl(url);
-            			
-            			Log.i(Constants.TAG, "Found code = " + authorizationCode);
-						
-            			oAuth2Helper.retrieveAndStoreAccessToken(authorizationCode);
-            			startActivity=true;
-			  		    hasLoggedIn=true;
+			if (url.startsWith(Oauth2Params.JAWBONE_OAUTH2.getRederictUri())) {
+				Log.i(TAG, "Redirect URL found" + url);
+				handled = true;
+				try {
+					if (url.indexOf("code=") != -1) {
+						String authorizationCode = extractCodeFromUrl(url);
 
-        			} else if (url.indexOf("error=")!=-1) {
-        				startActivity=true;
-        			}
-        			
+						Log.i(TAG, "Found code = "
+								+ authorizationCode);
+
+						oAuth2Helper
+								.retrieveAndStoreAccessToken(authorizationCode);
+						startActivity = true;
+						hasLoggedIn = true;
+
+					} else if (url.indexOf("error=") != -1) {
+						startActivity = true;
+					}
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
-        	} else {
-        		Log.i(Constants.TAG, "Not doing anything for url " + url);
-        	}
-            return null;
+			} else {
+				Log.i(TAG, "Not doing anything for url " + url);
+			}
+			return null;
 		}
 
 		private String extractCodeFromUrl(String url) throws Exception {
-			String encodedCode = url.substring(Constants.OAUTH2PARAMS.getRederictUri().length()+7,url.length());
-			return URLDecoder.decode(encodedCode,"UTF-8");
-		}  
-		
-		@Override
-		protected void onPreExecute() {
-			
+			String encodedCode = url.substring(Oauth2Params.JAWBONE_OAUTH2
+					.getRederictUri().length() + 7, url.length());
+			return URLDecoder.decode(encodedCode, "UTF-8");
 		}
 
+	
+
 		/**
-		 * When we're done and we've retrieved either a valid token or an error from the server,
-		 * we'll return to our original activity 
+		 * When we're done and we've retrieved either a valid token or an error
+		 * from the server, we'll return to the ItemMenuActivity
 		 */
 		@Override
 		protected void onPostExecute(Void result) {
 			if (startActivity) {
-				Log.i(Constants.TAG," ++++++++++++ Starting mainscreen again");
-				startActivity(new Intent(OAuthAccessTokenActivity.this,ItemMenuActivity.class));
+				Log.i(TAG, " ++++++++++++ Starting mainscreen again");
+				startActivity(new Intent(OAuthAccessTokenActivity.this,
+						ItemMenuActivity.class));
 
-				//startActivity(new Intent(OAuthAccessTokenActivity.this,MainScreen.class));
+				
 				finish();
 			}
 

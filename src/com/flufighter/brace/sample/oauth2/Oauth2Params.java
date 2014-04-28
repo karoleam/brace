@@ -1,6 +1,6 @@
 package com.flufighter.brace.sample.oauth2;
 
-import com.flufighter.brace.sample.oauth2.foursquare.FoursquareQueryParameterAccessMethod;
+import com.flufighter.brace.sample.oauth2.foursquare.JawBoneQueryParameterAccessMethod;
 import com.google.api.client.auth.oauth2.BearerToken;
 import com.google.api.client.auth.oauth2.Credential.AccessMethod;
 import com.google.api.services.plus.PlusScopes;
@@ -24,10 +24,9 @@ import com.google.api.services.plus.PlusScopes;
  *
  */
 public enum Oauth2Params {
-
 	
 	//https://jawbone.com/up/developer/authentication
-	FOURSQUARE_OAUTH2("lU_-bFm6Ezk","e87c6f15a402184a9dc4ddaadcd6196f1f0949b3","https://jawbone.com/auth/oauth2/token", "https://jawbone.com/auth/oauth2/auth",FoursquareQueryParameterAccessMethod.getInstance(),"extended_read sleep_read move_read","https://localhost","jawbone","https://jawbone.com/nudge/api/v.1.1/users/@me"); 
+	JAWBONE_OAUTH2("lU_-bFm6Ezk","e87c6f15a402184a9dc4ddaadcd6196f1f0949b3","https://jawbone.com/auth/oauth2/token", "https://jawbone.com/auth/oauth2/auth",JawBoneQueryParameterAccessMethod.getInstance(),"extended_read sleep_read move_read","https://localhost","jawbone","https://jawbone.com/nudge/api/v.1.1/users/@me"); 
 
     private String clientId;
 	private String clientSecret;

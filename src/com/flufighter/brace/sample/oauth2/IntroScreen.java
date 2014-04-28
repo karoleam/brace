@@ -36,34 +36,29 @@ public class IntroScreen extends Activity {
 		oAuth2Helper = new OAuth2Helper(this.prefs);
 		try {
 			if (oAuth2Helper.loadCredential().getAccessToken() == null)
-				startOauthFlow(Oauth2Params.FOURSQUARE_OAUTH2);
+				startOauthFlow();
 			else
-				startActivity(new Intent(this, ItemMenuActivity.class));
+				startMainScreen();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
 	/**
-	 * Starts the main screen where we show the API results.
+	 * Starts the main screen .
 	 * 
-	 * @param oauth2Params
 	 */
-	private void startMainScreen(Oauth2Params oauth2Params) {
-		Constants.OAUTH2PARAMS = oauth2Params;
-		startActivity(new Intent().setClass(this, MainScreen.class));
+	private void startMainScreen() {
+		startActivity(new Intent().setClass(this, ItemMenuActivity.class));
 	}
 
 	/**
 	 * Starts the activity that takes care of the OAuth2 flow
 	 * 
-	 * @param oauth2Params
 	 */
-	private void startOauthFlow(Oauth2Params oauth2Params) {
-		Constants.OAUTH2PARAMS = oauth2Params;
+	private void startOauthFlow() {
 		startActivity(new Intent().setClass(this,
 				OAuthAccessTokenActivity.class));
 	}

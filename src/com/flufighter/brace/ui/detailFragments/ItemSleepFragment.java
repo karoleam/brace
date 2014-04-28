@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.flufighter.brace.R;
 import com.flufighter.brace.R.layout;
-import com.flufighter.brace.sample.oauth2.Constants;
 import com.flufighter.brace.sample.oauth2.OAuth2Helper;
 import com.flufighter.brace.sample.oauth2.Oauth2Params;
 import com.flufighter.brace.ui.ItemDetailActivity;
@@ -64,6 +63,7 @@ public class ItemSleepFragment extends Fragment {
 	private SharedPreferences prefs;
 	private TextView txtApiResponse;
 	private OAuth2Helper oAuth2Helper;
+	private static String TAG = ItemSleepFragment.class.getSimpleName();
 
 	/**
 	 * The dummy content this fragment is presenting.
@@ -167,14 +167,11 @@ public class ItemSleepFragment extends Fragment {
 			mChartView.repaint();
 		}
 
-		
-		
 		this.txtApiResponse = (TextView) rootView.findViewById(R.id.result);
 
 		this.prefs = PreferenceManager
 				.getDefaultSharedPreferences(getActivity());
 		oAuth2Helper = new OAuth2Helper(this.prefs);
-		Constants.OAUTH2PARAMS = Oauth2Params.FOURSQUARE_OAUTH2;
 		// Performs an authorized API call.
 		performApiCall();
 
@@ -197,8 +194,7 @@ public class ItemSleepFragment extends Fragment {
 
 			try {
 				apiResponse = oAuth2Helper.executeSleepApiCall();
-				Log.i(Constants.TAG, "Received response from API : "
-						+ apiResponse);
+				Log.i(TAG, "Received response from API : " + apiResponse);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				apiResponse = ex.getMessage();
