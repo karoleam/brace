@@ -109,8 +109,7 @@ public class ItemFoodFragment extends Fragment {
 				apiResponse = oAuth2Helper.executeMovesApiCall();
 
 				Log.i(TAG, "Received response from API : " + apiResponse);
-				result = JawBoneAPIHelper.parseJsonMovesApiCall(apiResponse,
-						"calories");
+				result = JawBoneAPIHelper.parseJsonMovesApiCall(apiResponse,"calories");
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				apiResponse = ex.getMessage();

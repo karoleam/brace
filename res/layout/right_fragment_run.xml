@@ -13,7 +13,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp" />
 
-    <TextView
+   
+      <TextView
         android:id="@+id/textViewRun"
         style="@style/Text"
         android:layout_width="wrap_content"
@@ -21,7 +22,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
-        android:text="Today you walked:" />
+        android:text="Till today you have walked:" />
+ 
 
     <TextView
         android:id="@+id/TextView02"
@@ -41,7 +43,8 @@
         android:layout_marginBottom="81dp"
         android:src="@drawable/bridge" />
 
-    <TextView
+    <!--
+        <TextView
         android:id="@+id/TextView01"
         style="@style/Text"
         android:layout_width="wrap_content"
@@ -49,5 +52,6 @@
         android:layout_above="@+id/imageViewRun"
         android:layout_centerHorizontal="true"
         android:text="X" />
+    -->
 
 </RelativeLayout>

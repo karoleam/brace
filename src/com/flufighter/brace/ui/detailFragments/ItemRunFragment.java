@@ -13,9 +13,55 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.location.Location;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.flufighter.brace.R;
+import com.flufighter.brace.R.layout;
+import com.flufighter.brace.entities.Food;
+import com.flufighter.brace.entities.Weather;
+import com.flufighter.brace.tasks.GetFoodsAsyncTask;
+import com.flufighter.brace.ui.ItemDetailActivity;
+import com.flufighter.brace.ui.ItemMenuActivity;
+import com.flufighter.brace.ui.adapter.ImageAdapter;
+import com.flufighter.brace.util.Constants;
+import com.flufighter.brace.util.MyFragmentManager;
+import com.flufighter.brace.ws.remote.JawBoneAPIHelper;
+import com.flufighter.brace.ws.remote.OpenWeatherAPI.Callback;
+import com.flufighter.brace.ws.remote.oauth2.OAuth2Helper;
+import com.flufighter.brace.ws.remote.oauth2.Oauth2Params;
+
 import com.flufighter.brace.R;
 import com.flufighter.brace.R.layout;
 import com.flufighter.brace.ui.ItemDetailActivity;
+import com.flufighter.brace.ws.remote.JawBoneAPIHelper;
 import com.flufighter.brace.ws.remote.oauth2.OAuth2Helper;
 import com.flufighter.brace.ws.remote.oauth2.Oauth2Params;
 
@@ -28,7 +74,11 @@ public class ItemRunFragment extends Fragment {
 	private SharedPreferences prefs;
 	private TextView txtApiResponse;
 	private OAuth2Helper oAuth2Helper;
+	int distanceWalked = 0;
+	int lengthOfGoldenGateBridgeMeters =2737;
 	private static String TAG = ItemRunFragment.class.getSimpleName();
+	
+	TextView textViewLengthWalked;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -48,10 +98,9 @@ public class ItemRunFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.right_fragment_run,
 				container, false);
-
-		TextView currentRankText = (TextView) rootView
-				.findViewById(R.id.TextView02);
-		currentRankText.setText("200"); // <--------------make this dynamic
+//
+//		TextView currentRankText = (TextView) rootView.findViewById(R.id.TextView02);
+//		currentRankText.setText("200"); // <--------------make this dynamic
 
 		// Show the dummy content as text in a TextView.
 		// if (mItem != null) {
@@ -62,6 +111,12 @@ public class ItemRunFragment extends Fragment {
 
 		this.prefs = PreferenceManager
 				.getDefaultSharedPreferences(getActivity());
+		
+		
+		textViewLengthWalked = (TextView) rootView.findViewById(R.id.TextView02);
+		
+		updateUI();
+		
 		oAuth2Helper = new OAuth2Helper(this.prefs);
 		// Performs an authorized API call.
 		performApiCall();
@@ -75,27 +130,37 @@ public class ItemRunFragment extends Fragment {
 		new ApiCallExecutor().execute();
 	}
 
-	private class ApiCallExecutor extends AsyncTask<Uri, Void, Void> {
+	private class ApiCallExecutor extends AsyncTask<Uri, Void, Integer> {
 
 		String apiResponse = null;
 
 		@Override
-		protected Void doInBackground(Uri... params) {
-
+		protected Integer doInBackground(Uri... params) {
+			int result = -1;
 			try {
 				apiResponse = oAuth2Helper.executeMovesApiCall();
+
 				Log.i(TAG, "Received response from API : " + apiResponse);
+				result = (int) JawBoneAPIHelper.parseJsonMovesApiCall(apiResponse,"distance");
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				apiResponse = ex.getMessage();
 			}
-			return null;
+			return result;
 		}
 
 		@Override
-		protected void onPostExecute(Void result) {
-			txtApiResponse.setText(apiResponse);
+		protected void onPostExecute(Integer result) {
+//			txtApiResponse.setText(apiResponse);
+			distanceWalked = result.intValue();
+			updateUI();
 		}
 
 	}
+	
+	private void updateUI() {
+		float fraction = distanceWalked/lengthOfGoldenGateBridgeMeters;
+		textViewLengthWalked.setText(fraction + " times the length of the the Golden Gate Bridge ");
+	}
+	
 }
