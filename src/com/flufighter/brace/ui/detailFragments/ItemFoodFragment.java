@@ -148,46 +148,7 @@ public class ItemFoodFragment extends Fragment {
 						imageAdapter.setFoods(foods);
 						gridview.setAdapter(imageAdapter);
 						gridview.setColumnWidth(600);
-						gridview.setOnItemClickListener(new OnItemClickListener() {
-							public void onItemClick(AdapterView<?> parent,
-									View v, int position, long id) {
-
-								// Toast.makeText(getActivity(), "" + position,
-								// Toast.LENGTH_SHORT).show();
-								// Bundle bundle = new Bundle();
-								// bundle.putInt(ItemFoodResultFragment.FOOD_ID,
-								// 10);
-								// bundle.putInt(
-								// ItemDetailActivity.ARG_ITEM_ID,
-								// Constants.ID_FOOD_RESULT);
-								// bundle.putString("imageURL", ((ImageView)
-								// v).getDrawable().getT);
-								// bundle.putInt(
-								// ItemFoodResultFragment.FOOD_ID, 10);
-								//
-								// if (isTwoPanel) {
-								//
-								// Fragment fragment = MyFragmentManager
-								// .getFragmentByType(Constants.ID_FOOD_RESULT);
-								// fragment.setArguments(bundle);
-								// getActivity()
-								// .getSupportFragmentManager()
-								// .beginTransaction()
-								// .replace(
-								// R.id.item_detail_container,
-								// fragment).commit();
-								//
-								// } else {
-								// Intent detailIntent = new Intent(
-								// getActivity(),
-								// ItemDetailActivity.class);
-								// detailIntent.putExtras(bundle);
-								//
-								// startActivity(detailIntent);
-								// }
-
-							}
-						});
+					
 
 					}
 				});

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.flufighter.brace.R;
 import com.flufighter.brace.entities.Food;
+import com.flufighter.brace.util.Helpers;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -58,7 +59,7 @@ public class ImageAdapter extends BaseAdapter {
 		ImageView imageView = (ImageView) convertView
 				.findViewById(R.id.imageViewFoodImage);
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-		imageView.setImageResource(getResId(foods.get(position).getImageName(),
+		imageView.setImageResource(Helpers.getResId(foods.get(position).getImageName(),
 				R.drawable.class));
 		convertView.setLayoutParams(new GridView.LayoutParams(600, 600));
 		convertView.setPadding(8, 8, 8, 8);
@@ -72,16 +73,7 @@ public class ImageAdapter extends BaseAdapter {
 		return convertView;
 	}
 
-	public static int getResId(String variableName, Class<?> c) {
-
-		try {
-			Field idField = c.getDeclaredField(variableName);
-			return idField.getInt(idField);
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
-		}
-	}
+	
 
 	// references to our images
 	// private Integer[] mThumbIds = { R.drawable.food_fried_egg,

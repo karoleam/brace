@@ -1,57 +1,31 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:ignore="MergeRootFrame" >
+
+    <TextView
+        style="@style/Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="78dp"
+        android:gravity="center"
+        android:text="Till today you have walked:" />
 
     <TextView
         android:id="@+id/result"
         style="@style/Text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp" />
-
-   
-      <TextView
-        android:id="@+id/textViewRun"
-        style="@style/Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp"
-        android:text="Till today you have walked:" />
- 
-
-    <TextView
-        android:id="@+id/TextView02"
-        style="@style/Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewRun"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp" />
+        android:layout_marginTop="51dp"
+        android:gravity="center" />
 
     <ImageView
         android:id="@+id/imageViewRun"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewRun"
-        android:layout_alignParentBottom="true"
         android:layout_marginBottom="81dp"
-        android:src="@drawable/building_ggbridge" />
+        android:gravity="center" />
 
-    <!--
-        <TextView
-        android:id="@+id/TextView01"
-        style="@style/Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imageViewRun"
-        android:layout_centerHorizontal="true"
-        android:text="X" />
-    -->
-
-</RelativeLayout>
+</LinearLayout>
