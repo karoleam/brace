@@ -13,6 +13,11 @@ import android.util.Log;
 
 public class GetFoodsAsyncTask extends
 		AsyncTask<Integer, Integer, ArrayList<Food>> {
+
+	public interface Callback {
+		void onFoodData(ArrayList<Food> foods);
+	}
+
 	Context context;
 	String TAG = GetFoodsAsyncTask.class.getSimpleName();
 	Callback callback;
@@ -26,10 +31,6 @@ public class GetFoodsAsyncTask extends
 		/* i never detach the fragment, so its safe to call getActivity().. */
 		dialog = new ProgressDialog(itemFoodFragment.getActivity());
 		dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-	}
-
-	public interface Callback {
-		void onFoodData(ArrayList<Food> foods);
 	}
 
 	@Override

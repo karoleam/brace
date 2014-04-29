@@ -12,6 +12,11 @@ import android.util.Log;
 
 public class GetBuildingAsyncTask extends
 		AsyncTask<Integer, Integer, ArrayList<Building>> {
+
+	public interface Callback {
+		void onBuildingsData(ArrayList<Building> buildings);
+	}
+
 	Context context;
 	String TAG = GetBuildingAsyncTask.class.getSimpleName();
 	Callback callback;
@@ -23,10 +28,6 @@ public class GetBuildingAsyncTask extends
 
 		/* i never detach the fragment, so its safe to call getActivity().. */
 
-	}
-
-	public interface Callback {
-		void onBuildingsData(ArrayList<Building> buildings);
 	}
 
 	protected ArrayList<Building> doInBackground(Integer... ints) {

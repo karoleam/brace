@@ -13,8 +13,7 @@ public class MyFragmentManager {
 			return new ItemRunFragment();
 		case Constants.ID_FOOD:
 			return new ItemFoodFragment();
-		case Constants.ID_FOOD_RESULT:
-			return new ItemFoodResultFragment();
+		
 		case Constants.ID_FORECAST:
 			return new ItemForecastFragment();
 		case Constants.ID_SLEEP:

@@ -38,35 +38,34 @@ public final class R {
         public static final int sun=0x7f020014;
     }
     public static final class id {
-        public static final int action_forgot_password=0x7f08001c;
-        public static final int chart=0x7f08001b;
-        public static final int gridview=0x7f08000d;
-        public static final int imageButtonMenu1=0x7f080002;
-        public static final int imageButtonMenu2=0x7f080003;
-        public static final int imageButtonMenu3=0x7f080004;
-        public static final int imageButtonMenu4=0x7f080005;
-        public static final int imageViewFood1=0x7f080014;
-        public static final int imageViewFood2=0x7f080011;
-        public static final int imageViewFood3=0x7f080013;
-        public static final int imageViewFoodImage=0x7f08000e;
-        public static final int imageViewMain1=0x7f080007;
-        public static final int imageViewMain2=0x7f080008;
-        public static final int imageViewMain3=0x7f080009;
-        public static final int imageViewMain4=0x7f08000a;
-        public static final int imageViewMain5=0x7f08000b;
-        public static final int imageViewRun=0x7f08001a;
-        public static final int item_detail_container=0x7f080000;
-        public static final int item_list=0x7f080001;
-        public static final int result=0x7f080019;
-        public static final int textViewFood2=0x7f080012;
-        public static final int textViewFoodCaloriesBurnt=0x7f08000c;
-        public static final int textViewFoodQuantity=0x7f08000f;
-        public static final int textViewFoodResult=0x7f080010;
-        public static final int textViewForecastCity=0x7f080015;
-        public static final int textViewForecastDescription=0x7f080016;
-        public static final int textViewForecastSuggestion=0x7f080018;
-        public static final int textViewForecastTempeature=0x7f080017;
-        public static final int textViewMain=0x7f080006;
+        public static final int chart=0x7f07001b;
+        public static final int gridview=0x7f07000d;
+        public static final int imageButtonMenu1=0x7f070002;
+        public static final int imageButtonMenu2=0x7f070003;
+        public static final int imageButtonMenu3=0x7f070004;
+        public static final int imageButtonMenu4=0x7f070005;
+        public static final int imageViewFood1=0x7f070014;
+        public static final int imageViewFood2=0x7f070011;
+        public static final int imageViewFood3=0x7f070013;
+        public static final int imageViewFoodImage=0x7f07000e;
+        public static final int imageViewMain1=0x7f070007;
+        public static final int imageViewMain2=0x7f070008;
+        public static final int imageViewMain3=0x7f070009;
+        public static final int imageViewMain4=0x7f07000a;
+        public static final int imageViewMain5=0x7f07000b;
+        public static final int imageViewRun=0x7f07001a;
+        public static final int item_detail_container=0x7f070000;
+        public static final int item_list=0x7f070001;
+        public static final int result=0x7f070019;
+        public static final int textViewFood2=0x7f070012;
+        public static final int textViewFoodCaloriesBurnt=0x7f07000c;
+        public static final int textViewFoodQuantity=0x7f07000f;
+        public static final int textViewFoodResult=0x7f070010;
+        public static final int textViewForecastCity=0x7f070015;
+        public static final int textViewForecastDescription=0x7f070016;
+        public static final int textViewForecastSuggestion=0x7f070018;
+        public static final int textViewForecastTempeature=0x7f070017;
+        public static final int textViewMain=0x7f070006;
     }
     public static final class layout {
         public static final int activity_item_detail=0x7f030000;
@@ -89,24 +88,8 @@ public final class R {
         public static final int right_fragment_run=0x7f030009;
         public static final int right_fragment_sleep=0x7f03000a;
     }
-    public static final class menu {
-        public static final int login=0x7f070000;
-    }
     public static final class string {
-        public static final int action_forgot_password=0x7f050007;
-        public static final int action_sign_in_register=0x7f050005;
-        public static final int action_sign_in_short=0x7f050006;
         public static final int app_name=0x7f050000;
-        public static final int error_field_required=0x7f05000c;
-        public static final int error_incorrect_password=0x7f05000b;
-        public static final int error_invalid_email=0x7f050009;
-        public static final int error_invalid_password=0x7f05000a;
-        public static final int login_progress_signing_in=0x7f050008;
-        /**  Strings related to login 
-         */
-        public static final int prompt_email=0x7f050003;
-        public static final int prompt_password=0x7f050004;
-        public static final int title_activity_login=0x7f050002;
         public static final int title_item_detail=0x7f050001;
     }
     public static final class style {

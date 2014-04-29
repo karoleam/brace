@@ -34,6 +34,7 @@ import com.flufighter.brace.R;
 import com.flufighter.brace.R.layout;
 import com.flufighter.brace.entities.Food;
 import com.flufighter.brace.entities.Weather;
+import com.flufighter.brace.tasks.FoodApiCallTask;
 import com.flufighter.brace.tasks.GetFoodsAsyncTask;
 import com.flufighter.brace.ui.ItemDetailActivity;
 import com.flufighter.brace.ui.ItemMenuActivity;
@@ -83,8 +84,6 @@ public class ItemFoodFragment extends Fragment {
 		textViewCaloriesBurnt = (TextView) rootView
 				.findViewById(R.id.textViewFoodCaloriesBurnt);
 
-		updateUI();
-
 		oAuth2Helper = new OAuth2Helper(this.prefs);
 		// Performs an authorized API call.
 		performApiCall();
@@ -95,65 +94,36 @@ public class ItemFoodFragment extends Fragment {
 	 * Performs an authorized API call.
 	 */
 	private void performApiCall() {
-		new ApiCallExecutor().execute();
-	}
+		new FoodApiCallTask(oAuth2Helper, new FoodApiCallTask.Callback() {
 
-	private class ApiCallExecutor extends AsyncTask<Uri, Void, Float> {
-
-		String apiResponse = null;
-
-		@Override
-		protected Float doInBackground(Uri... params) {
-			float result = -1;
-			try {
-				apiResponse = oAuth2Helper.executeMovesApiCall();
-
-				Log.i(TAG, "Received response from API : " + apiResponse);
-				result = JawBoneAPIHelper.parseJsonMovesApiCall(apiResponse,"calories");
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				apiResponse = ex.getMessage();
+			@Override
+			public void onAPIResponse(int caloriesBurnt) {
+				ItemFoodFragment.this.caloriesBurnt = caloriesBurnt;
+				textViewCaloriesBurnt.setText("You burnt " + caloriesBurnt
+						+ " calories, so you can eat:");
+				performGetFoodTask();
 			}
-			return result;
-		}
-
-		@Override
-		protected void onPostExecute(Float result) {
-			// txtApiResponse.setText(String.valueOf(parseJsonMovesApiCall(
-			// apiResponse, "calories")));
-
-			caloriesBurnt = result.intValue();
-			updateUI();
-		}
-
+		}).execute();
 	}
 
-	private void updateUI() {
-		textViewCaloriesBurnt.setText("You burnt " + caloriesBurnt
-				+ " calories, so you can eat:");
+	private void performGetFoodTask() {
+		new GetFoodsAsyncTask(this, new GetFoodsAsyncTask.Callback() {
 
-		GetFoodsAsyncTask task = new GetFoodsAsyncTask(this,
-				new GetFoodsAsyncTask.Callback() {
+			@Override
+			public void onFoodData(ArrayList<Food> foods) {
 
-					@Override
-					public void onFoodData(ArrayList<Food> foods) {
+				for (Food food : foods) {
+					food.setQuantity(caloriesBurnt / food.getCalories());
 
-						for (Food food : foods) {
-							food.setQuantity(caloriesBurnt / food.getCalories());
+				}
 
-						}
+				ImageAdapter imageAdapter = new ImageAdapter(getActivity());
+				imageAdapter.setFoods(foods);
+				gridview.setAdapter(imageAdapter);
+				gridview.setColumnWidth(600);
 
-						ImageAdapter imageAdapter = new ImageAdapter(
-								getActivity());
-						imageAdapter.setFoods(foods);
-						gridview.setAdapter(imageAdapter);
-						gridview.setColumnWidth(600);
-					
-
-					}
-				});
-
-		task.execute();
+			}
+		}).execute();
 
 	}
 

@@ -49,8 +49,10 @@ import com.flufighter.brace.R.layout;
 import com.flufighter.brace.entities.Building;
 import com.flufighter.brace.entities.Food;
 import com.flufighter.brace.entities.Weather;
+import com.flufighter.brace.tasks.FoodApiCallTask;
 import com.flufighter.brace.tasks.GetBuildingAsyncTask;
 import com.flufighter.brace.tasks.GetFoodsAsyncTask;
+import com.flufighter.brace.tasks.RunApiCallTask;
 import com.flufighter.brace.ui.ItemDetailActivity;
 import com.flufighter.brace.ui.ItemMenuActivity;
 import com.flufighter.brace.ui.adapter.ImageAdapter;
@@ -114,10 +116,7 @@ public class ItemRunFragment extends Fragment {
 		this.prefs = PreferenceManager
 				.getDefaultSharedPreferences(getActivity());
 		imageView = (ImageView) rootView.findViewById(R.id.imageViewRun);
-		textViewLengthWalked = (TextView) rootView
-				.findViewById(R.id.result);
-
-		updateUI();
+		textViewLengthWalked = (TextView) rootView.findViewById(R.id.result);
 
 		oAuth2Helper = new OAuth2Helper(this.prefs);
 		// Performs an authorized API call.
@@ -129,63 +128,35 @@ public class ItemRunFragment extends Fragment {
 	 * Performs an authorized API call.
 	 */
 	private void performApiCall() {
-		new ApiCallExecutor().execute();
-	}
+		new RunApiCallTask(oAuth2Helper, new RunApiCallTask.Callback() {
 
-	private class ApiCallExecutor extends AsyncTask<Uri, Void, Integer> {
-
-		String apiResponse = null;
-
-		@Override
-		protected Integer doInBackground(Uri... params) {
-			int result = -1;
-			try {
-				apiResponse = oAuth2Helper.executeMovesApiCall();
-
-				Log.i(TAG, "Received response from API : " + apiResponse);
-				result = (int) JawBoneAPIHelper.parseJsonMovesApiCall(
-						apiResponse, "distance");
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				apiResponse = ex.getMessage();
+			@Override
+			public void onAPIResponse(int distanceWalked) {
+				ItemRunFragment.this.distanceWalked = distanceWalked;
+				performGetBuildingTask();
 			}
-			return result;
-		}
-
-		@Override
-		protected void onPostExecute(Integer result) {
-			// txtApiResponse.setText(apiResponse);
-			distanceWalked = result.intValue();
-			updateUI();
-		}
-
+		}).execute();
 	}
 
-	private void updateUI() {
+	private void performGetBuildingTask() {
 
-		GetBuildingAsyncTask task = new GetBuildingAsyncTask(this,
-				new GetBuildingAsyncTask.Callback() {
+		new GetBuildingAsyncTask(this, new GetBuildingAsyncTask.Callback() {
 
-					@Override
-					public void onBuildingsData(ArrayList<Building> buildings) {
+			@Override
+			public void onBuildingsData(ArrayList<Building> buildings) {
 
-						Random rand = new Random();
-						Building building = buildings.get(rand
-								.nextInt(buildings.size()));
-						float fraction = distanceWalked / building.getLength();
-						textViewLengthWalked.setText(fraction
-								+ " times the length of the "
-								+ building.getName());
+				Random rand = new Random();
+				Building building = buildings.get(rand.nextInt(buildings.size()));
+				float fraction = distanceWalked / building.getLength();
+				textViewLengthWalked.setText(fraction
+						+ " times the length of the " + building.getName());
 
-						imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-						imageView.setImageResource(Helpers.getResId(
-								building.getImageName(), R.drawable.class));
+				imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+				imageView.setImageResource(Helpers.getResId(
+						building.getImageName(), R.drawable.class));
 
-					}
-				});
-
-		task.execute();
+			}
+		}).execute();
 
 	}
-
 }
