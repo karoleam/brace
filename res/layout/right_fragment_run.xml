@@ -41,7 +41,7 @@
         android:layout_alignLeft="@+id/textViewRun"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="81dp"
-        android:src="@drawable/bridge" />
+        android:src="@drawable/building_ggbridge" />
 
     <!--
         <TextView

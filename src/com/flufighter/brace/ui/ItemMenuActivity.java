@@ -1,6 +1,7 @@
 package com.flufighter.brace.ui;
 
 import com.flufighter.brace.R;
+import com.flufighter.brace.dblayout.BuildingDataSource;
 import com.flufighter.brace.dblayout.FoodDataSource;
 import com.flufighter.brace.ui.detailFragments.ItemFoodFragment;
 import com.flufighter.brace.util.MyFragmentManager;
@@ -87,6 +88,8 @@ public class ItemMenuActivity extends FragmentActivity implements
 			FoodDataSource foodDataSource = new FoodDataSource(this);
 			foodDataSource.insertDefaultFoods();
 
+			BuildingDataSource buildingDataSource = new BuildingDataSource(this);
+			buildingDataSource.insertDefaultBuildings();
 		}
 		// TODO: If exposing deep links into your app, handle intents here.
 	}

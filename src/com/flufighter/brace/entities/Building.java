@@ -5,6 +5,13 @@ public class Building {
 	private int id;
 	private String name;
 	private int length;
+	private String imageName;
+
+	public Building(String name, int length, String imageName) {
+		this.name = name;
+		this.length = length;
+		this.imageName = imageName;
+	}
 
 	public int getId() {
 		return id;
@@ -28,6 +35,14 @@ public class Building {
 
 	public void setLength(int length) {
 		this.length = length;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 
 }

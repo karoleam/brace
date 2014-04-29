@@ -15,24 +15,27 @@ public final class R {
         public static final int white=0x7f040000;
     }
     public static final class drawable {
-        public static final int bridge=0x7f020000;
-        public static final int circle=0x7f020001;
-        public static final int cloud=0x7f020002;
-        public static final int food_apple=0x7f020003;
-        public static final int food_banana=0x7f020004;
-        public static final int food_cupcake=0x7f020005;
-        public static final int food_hamburguer=0x7f020006;
-        public static final int food_press=0x7f020007;
-        public static final int ic_launcher=0x7f020008;
-        public static final int round1=0x7f020009;
-        public static final int round2=0x7f02000a;
-        public static final int round3=0x7f02000b;
-        public static final int round4=0x7f02000c;
-        public static final int round5=0x7f02000d;
-        public static final int run_big_press=0x7f02000e;
-        public static final int run_small_press=0x7f02000f;
-        public static final int sleep_press=0x7f020010;
-        public static final int sun=0x7f020011;
+        public static final int building_brooklyn_bridge=0x7f020000;
+        public static final int building_empire_state=0x7f020001;
+        public static final int building_ggbridge=0x7f020002;
+        public static final int building_willis_tower=0x7f020003;
+        public static final int circle=0x7f020004;
+        public static final int cloud=0x7f020005;
+        public static final int food_apple=0x7f020006;
+        public static final int food_banana=0x7f020007;
+        public static final int food_cupcake=0x7f020008;
+        public static final int food_hamburguer=0x7f020009;
+        public static final int food_press=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
+        public static final int round1=0x7f02000c;
+        public static final int round2=0x7f02000d;
+        public static final int round3=0x7f02000e;
+        public static final int round4=0x7f02000f;
+        public static final int round5=0x7f020010;
+        public static final int run_big_press=0x7f020011;
+        public static final int run_small_press=0x7f020012;
+        public static final int sleep_press=0x7f020013;
+        public static final int sun=0x7f020014;
     }
     public static final class id {
         public static final int TextView02=0x7f08001b;

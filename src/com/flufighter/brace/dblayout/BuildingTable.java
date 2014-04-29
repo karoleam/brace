@@ -9,14 +9,16 @@ public class BuildingTable {
 	public static final String COLUMN_BUILDING_ID = "building_id";
 	public static final String COLUMN_NAME = "name";
 	public static final String COLUMN_LENGTH = "length";
+	public static final String COLUMN_IMAGE_NAME = "image_name";
 
 	public static final String TABLE_CREATE = "CREATE TABLE IF NOT EXISTS "
 			+ TABLE_BUILDING + " ( " + COLUMN_BUILDING_ID
 			+ " INTEGER PRIMARY KEY, " + COLUMN_NAME + " STRING, "
-			+ COLUMN_LENGTH + " INTEGER" + ")";
+			+ COLUMN_LENGTH + " INTEGER, " + COLUMN_IMAGE_NAME + " STRING"
+			+ ")";
 
 	public static final String[] ALL_COLUMNS_BUILDING = { COLUMN_BUILDING_ID,
-			COLUMN_NAME, COLUMN_LENGTH };
+			COLUMN_NAME, COLUMN_LENGTH, COLUMN_IMAGE_NAME };
 
 	public static void onCreate(SQLiteDatabase db) {
 
