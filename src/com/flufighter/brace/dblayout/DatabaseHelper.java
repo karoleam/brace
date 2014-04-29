@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Log.i(TAG, "onCreate");
 
 		FoodTable.onCreate(db);
-		SleepTable.onCreate(db);
+		
 		BuildingTable.onCreate(db);
 
 		Log.i(TAG, "Tables have been created");
@@ -44,7 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Log.i(TAG, "onUpgrade");
 
 		FoodTable.onUpgrade(db, oldVersion, newVersion);
-		SleepTable.onUpgrade(db, oldVersion, newVersion);
+		
 		BuildingTable.onUpgrade(db, oldVersion, newVersion);
 		Log.i(TAG, "Tables have been upgraded");
 

@@ -161,6 +161,7 @@ public class ItemRunFragment extends Fragment {
 	private void updateUI() {
 		float fraction = distanceWalked/lengthOfGoldenGateBridgeMeters;
 		textViewLengthWalked.setText(fraction + " times the length of the the Golden Gate Bridge ");
+//		textViewLengthWalked.setText("Light Sleep = "+ distanceWalked + " sec ");
 	}
 	
 }
