@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -144,8 +145,20 @@ public class OAuth2Helper {
 	public String executeMovesApiCall() throws IOException {
 		String accessToken = flow.loadCredential(oauth2Params.getUserId())
 				.getAccessToken();
-		return get("https://jawbone.com/nudge/api/v.1.1/users/@me/moves",
-				accessToken);
+		Calendar now = Calendar.getInstance();
+		Calendar today = Calendar.getInstance();
+
+		int month = today.get(Calendar.MONTH);
+		int year = today.get(Calendar.YEAR);
+		int date = today.get(Calendar.DATE);
+		today.set(year, month, date, 0, 0, 0);
+
+		// System.out.println(today.getTimeInMillis() / 1000);
+		// System.out.println(now.getTimeInMillis() / 1000);
+
+		return get(
+				"https://jawbone.com/nudge/api/v.1.1/users/@me/moves?start_time="
+						+ (today.getTimeInMillis() / 1000), accessToken);
 	}
 
 	public String executeSleepApiCall() throws IOException {

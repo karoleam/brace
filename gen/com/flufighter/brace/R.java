@@ -38,15 +38,15 @@ public final class R {
         public static final int TextView02=0x7f08001b;
         public static final int action_forgot_password=0x7f08001e;
         public static final int chart=0x7f08001d;
-        public static final int gridview=0x7f08000e;
+        public static final int gridview=0x7f08000d;
         public static final int imageButtonMenu1=0x7f080002;
         public static final int imageButtonMenu2=0x7f080003;
         public static final int imageButtonMenu3=0x7f080004;
         public static final int imageButtonMenu4=0x7f080005;
-        public static final int imageViewFood1=0x7f080015;
-        public static final int imageViewFood2=0x7f080012;
-        public static final int imageViewFood3=0x7f080014;
-        public static final int imageViewFoodImage=0x7f08000f;
+        public static final int imageViewFood1=0x7f080014;
+        public static final int imageViewFood2=0x7f080011;
+        public static final int imageViewFood3=0x7f080013;
+        public static final int imageViewFoodImage=0x7f08000e;
         public static final int imageViewMain1=0x7f080007;
         public static final int imageViewMain2=0x7f080008;
         public static final int imageViewMain3=0x7f080009;
@@ -55,28 +55,21 @@ public final class R {
         public static final int imageViewRun=0x7f08001c;
         public static final int item_detail_container=0x7f080000;
         public static final int item_list=0x7f080001;
-        public static final int result=0x7f08000c;
-        public static final int textViewFood2=0x7f080013;
-        public static final int textViewFoodCaloriesBurnt=0x7f08000d;
-        public static final int textViewFoodQuantity=0x7f080010;
-        public static final int textViewFoodResult=0x7f080011;
-        public static final int textViewForecastCity=0x7f080016;
-        public static final int textViewForecastDescription=0x7f080017;
-        public static final int textViewForecastSuggestion=0x7f080019;
-        public static final int textViewForecastTempeature=0x7f080018;
+        public static final int result=0x7f080019;
+        public static final int textViewFood2=0x7f080012;
+        public static final int textViewFoodCaloriesBurnt=0x7f08000c;
+        public static final int textViewFoodQuantity=0x7f08000f;
+        public static final int textViewFoodResult=0x7f080010;
+        public static final int textViewForecastCity=0x7f080015;
+        public static final int textViewForecastDescription=0x7f080016;
+        public static final int textViewForecastSuggestion=0x7f080018;
+        public static final int textViewForecastTempeature=0x7f080017;
         public static final int textViewMain=0x7f080006;
         public static final int textViewRun=0x7f08001a;
     }
     public static final class layout {
         public static final int activity_item_detail=0x7f030000;
         /** 
-    Layout alias to replace the single-pane version of the layout with a
-    two-pane version on Large screens.
-
-    For more on layout aliases, see:
-    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
-    
-
     Layout alias to replace the single-pane version of the layout with a
     two-pane version on Large screens.
 

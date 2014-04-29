@@ -39,7 +39,7 @@ public class LoginActivity extends Activity implements ProcessTokenTask.Callback
 
 		oAuth2Helper = new OAuth2Helper(this.prefs);
 		try {
-			if (oAuth2Helper.loadCredential().getAccessToken() == null) {
+			if (oAuth2Helper.loadCredential().getAccessToken() == null && true) {
 				startOauthFlow();
 
 			} else
