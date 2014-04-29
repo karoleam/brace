@@ -91,18 +91,15 @@ public class ItemMenuActivity extends FragmentActivity implements
 			BuildingDataSource buildingDataSource = new BuildingDataSource(this);
 			buildingDataSource.insertDefaultBuildings();
 		}
-		// TODO: If exposing deep links into your app, handle intents here.
 	}
 
 	@Override
 	public void onItemSelected(int id) {
 
-		// put a switch here to define which fragment should be shwon
 
 		if (mTwoPane) {
 
 			Fragment fragment = MyFragmentManager.getFragmentByType(id);
-			// fragment.setArguments(arguments);
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.item_detail_container, fragment).commit();
 
@@ -112,19 +109,7 @@ public class ItemMenuActivity extends FragmentActivity implements
 			startActivity(detailIntent);
 		}
 
-		// if (mTwoPane) {
-		// // In two-pane mode, show the detail view in this activity by
-		// // adding or replacing the detail fragment using a
-		// // fragment transaction.
-		// // Bundle arguments = new Bundle();
-		// // arguments.putString(ItemDetailFragment.ARG_ITEM_ID, id);
-		//
-		//
-		// } else {
-		// // In single-pane mode, simply start the detail activity
-		// // for the selected item ID.
-		//
-		// }
+		
 	}
 
 }

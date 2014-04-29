@@ -7,6 +7,11 @@ import android.util.Log;
 public class Helpers {
 	private static String TAG = Helpers.class.getSimpleName();
 
+	/**
+	 * returns a resource id given the name and the resource type
+	 * 
+	 * 
+	 * */
 	public static int getResId(String variableName, Class<?> c) {
 
 		try {

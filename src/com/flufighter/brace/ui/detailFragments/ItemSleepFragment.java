@@ -11,13 +11,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.flufighter.brace.R;
-import com.flufighter.brace.R.layout;
 import com.flufighter.brace.ui.ItemDetailActivity;
 import com.flufighter.brace.ws.remote.oauth2.OAuth2Helper;
-import com.flufighter.brace.ws.remote.oauth2.Oauth2Params;
 
-import android.app.Activity;
-import android.view.Menu;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
@@ -26,12 +22,9 @@ import org.achartengine.model.SeriesSelection;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.Toast;

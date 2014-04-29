@@ -23,6 +23,10 @@ public class BuildingDataSource {
 
 	}
 
+	
+	/**
+	 * Initializes the buildings table
+	 */
 	public void insertDefaultBuildings() {
 		ArrayList<Building> buildings = new ArrayList<Building>();
 		buildings.add(new Building("Golden Gate Bridge", 2737, "building_ggbridge"));
@@ -34,6 +38,11 @@ public class BuildingDataSource {
 
 	}
 
+	
+	/**
+	 * Inserts buildings in the Building Table
+	 * @param buildings an arraylist of Building
+	 */
 	public void insertBuildings(ArrayList<Building> buildings) {
 
 		database = dbhelper.getWritableDatabase();
@@ -50,19 +59,11 @@ public class BuildingDataSource {
 
 	}
 
-	public void deleteBuilding(Building building) {
-
-	}
-
-	public void updateBuilding(Building Building) {
-
-	}
-
-	public Building selectBuilding(int id) {
-
-		return null;
-	}
-
+	
+	/**
+	 * Reads buildings from the Building Table
+	 * @return an arraylist of Building
+	 */
 	public ArrayList<Building> allBuildings() {
 
 		database = dbhelper.getReadableDatabase();

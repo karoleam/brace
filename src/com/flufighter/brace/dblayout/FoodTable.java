@@ -23,7 +23,6 @@ public class FoodTable {
 			COLUMN_NAME, COLUMN_CALORIES, COLUMN_IMAGE_NAME };
 
 	public static void onCreate(SQLiteDatabase db) {
-		// create and also inserts data
 		db.execSQL(TABLE_CREATE);
 
 	}

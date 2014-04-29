@@ -2,7 +2,6 @@ package com.flufighter.brace.ui;
 
 import java.io.IOException;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -17,13 +16,13 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-
 import com.flufighter.brace.ws.remote.oauth2.OAuth2Helper;
 import com.flufighter.brace.ws.remote.oauth2.Oauth2Params;
 import com.flufighter.brace.ws.remote.oauth2.ProcessTokenTask;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class LoginActivity extends Activity implements ProcessTokenTask.Callback {
+public class LoginActivity extends Activity implements
+		ProcessTokenTask.Callback {
 	private static String TAG = LoginActivity.class.getSimpleName();
 
 	private SharedPreferences prefs;
@@ -104,7 +103,7 @@ public class LoginActivity extends Activity implements ProcessTokenTask.Callback
 
 	@Override
 	public void onAuthentication(boolean handled, boolean startActivity) {
-		startActivity(new Intent(LoginActivity.this, ItemMenuActivity.class));
+		startMainScreen();
 		finish();
 	}
 

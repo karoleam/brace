@@ -1,17 +1,13 @@
 package com.flufighter.brace.ui;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.flufighter.brace.R;
@@ -37,9 +33,7 @@ public class ItemMenuFragment extends Fragment implements OnClickListener {
 	 */
 	public static final String ARG_ITEM_ID = "item_id";
 
-	/**
-	 * The dummy content this fragment is presenting.
-	 */
+
 
 	private Callbacks mCallbacks = sDummyCallbacks;
 
@@ -72,8 +66,7 @@ public class ItemMenuFragment extends Fragment implements OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// View rootView = inflater.inflate(R.layout.activity_item_detail,
-		// container, false);
+	
 		View rootView = inflater.inflate(R.layout.left_menu_fragment,
 				container, false);
 
@@ -91,11 +84,7 @@ public class ItemMenuFragment extends Fragment implements OnClickListener {
 		ImageButton imageButtonSleep = (ImageButton) rootView
 				.findViewById(R.id.imageButtonMenu4);
 		imageButtonSleep.setOnClickListener(this);
-		// Show the dummy content as text in a TextView.
-		// if (mItem != null) {
-		// ((TextView)
-		// rootView.findViewById(R.id.item_detail)).setText(mItem.content);
-		// }
+	
 
 		return rootView;
 	}

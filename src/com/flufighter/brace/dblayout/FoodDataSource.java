@@ -23,6 +23,9 @@ public class FoodDataSource {
 
 	}
 
+	/**
+	 * Initializes the food table
+	 */
 	public void insertDefaultFoods() {
 		ArrayList<Food> foods = new ArrayList<Food>();
 		foods.add(new Food("Cupcake", 100, "food_cupcake"));
@@ -34,6 +37,12 @@ public class FoodDataSource {
 
 	}
 
+	/**
+	 * Inserts foods in the Food Table
+	 * 
+	 * @param fods
+	 *            an arraylist of Food
+	 */
 	public void insertFoods(ArrayList<Food> foods) {
 
 		database = dbhelper.getWritableDatabase();
@@ -50,19 +59,11 @@ public class FoodDataSource {
 
 	}
 
-	public void deleteFood(Food food) {
-
-	}
-
-	public void updateFood(Food food) {
-
-	}
-
-	public Food selectFood(int id) {
-
-		return null;
-	}
-
+	/**
+	 * Reads foods from the Food Table
+	 * 
+	 * @return an arraylist of Food
+	 */
 	public ArrayList<Food> allFood() {
 
 		database = dbhelper.getReadableDatabase();

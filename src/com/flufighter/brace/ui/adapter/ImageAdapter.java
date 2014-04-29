@@ -1,6 +1,5 @@
 package com.flufighter.brace.ui.adapter;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import com.flufighter.brace.R;
@@ -8,8 +7,7 @@ import com.flufighter.brace.entities.Food;
 import com.flufighter.brace.util.Helpers;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +49,6 @@ public class ImageAdapter extends BaseAdapter {
 			convertView = LayoutInflater.from(mContext).inflate(
 					R.layout.right_fragment_food_item, parent, false);
 		}
-		// ImageView imageView;
 
 		TextView textView = (TextView) convertView
 				.findViewById(R.id.textViewFoodQuantity);
@@ -59,28 +56,13 @@ public class ImageAdapter extends BaseAdapter {
 		ImageView imageView = (ImageView) convertView
 				.findViewById(R.id.imageViewFoodImage);
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-		imageView.setImageResource(Helpers.getResId(foods.get(position).getImageName(),
-				R.drawable.class));
+		imageView.setImageResource(Helpers.getResId(foods.get(position)
+				.getImageName(), R.drawable.class));
 		convertView.setLayoutParams(new GridView.LayoutParams(600, 600));
 		convertView.setPadding(8, 8, 8, 8);
 
-		// imageView = new ImageView(mContext);
-		// imageView.setLayoutParams(new GridView.LayoutParams(600, 600));
-		// imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-		// imageView.setPadding(8, 8, 8, 8);
-
-		// imageView.setImageResource(mThumbIds[position]);
 		return convertView;
 	}
-
-	
-
-	// references to our images
-	// private Integer[] mThumbIds = { R.drawable.food_fried_egg,
-	// R.drawable.food_hamburguer, R.drawable.food_pancake,
-	// R.drawable.food_hamburguer
-	//
-	// };
 
 	public ArrayList<Food> getFoods() {
 		return foods;

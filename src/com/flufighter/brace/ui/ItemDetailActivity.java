@@ -2,14 +2,12 @@ package com.flufighter.brace.ui;
 
 import com.flufighter.brace.R;
 import com.flufighter.brace.ui.detailFragments.ItemFoodFragment;
-import com.flufighter.brace.util.Constants;
 import com.flufighter.brace.util.MyFragmentManager;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
-import android.view.MenuItem;
+
 
 /**
  * An activity representing a single Item detail screen. This activity is only

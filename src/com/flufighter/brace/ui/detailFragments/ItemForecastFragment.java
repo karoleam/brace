@@ -17,7 +17,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 import com.flufighter.brace.R;
-import com.flufighter.brace.R.layout;
 import com.flufighter.brace.entities.Weather;
 import com.flufighter.brace.ui.ItemDetailActivity;
 import com.flufighter.brace.ws.remote.OpenWeatherAPI;
@@ -127,6 +126,10 @@ public class ItemForecastFragment extends Fragment {
 		return rootView;
 	}
 
+	
+	/**
+	 * Performs an  API call to get weather information.
+	 */
 	private void updateWeather() {
 		Log.i(TAG, "updateWeather");
 		OpenWeatherAPI.getWeatherData(location, mQueue,

@@ -1,8 +1,5 @@
 package com.flufighter.brace.dblayout;
 
-import java.util.ArrayList;
-
-import com.flufighter.brace.entities.Food;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

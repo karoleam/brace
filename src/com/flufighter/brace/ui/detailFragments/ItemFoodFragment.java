@@ -2,49 +2,27 @@ package com.flufighter.brace.ui.detailFragments;
 
 import java.util.ArrayList;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.Location;
-import android.net.Uri;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.GridView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import android.widget.GridView;
+
+import android.widget.TextView;
+
 import com.flufighter.brace.R;
-import com.flufighter.brace.R.layout;
 import com.flufighter.brace.entities.Food;
-import com.flufighter.brace.entities.Weather;
 import com.flufighter.brace.tasks.FoodApiCallTask;
 import com.flufighter.brace.tasks.GetFoodsAsyncTask;
 import com.flufighter.brace.ui.ItemDetailActivity;
 import com.flufighter.brace.ui.ItemMenuActivity;
 import com.flufighter.brace.ui.adapter.ImageAdapter;
-import com.flufighter.brace.util.Constants;
-import com.flufighter.brace.util.MyFragmentManager;
-import com.flufighter.brace.ws.remote.JawBoneAPIHelper;
-import com.flufighter.brace.ws.remote.OpenWeatherAPI.Callback;
 import com.flufighter.brace.ws.remote.oauth2.OAuth2Helper;
-import com.flufighter.brace.ws.remote.oauth2.Oauth2Params;
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either
@@ -85,13 +63,12 @@ public class ItemFoodFragment extends Fragment {
 				.findViewById(R.id.textViewFoodCaloriesBurnt);
 
 		oAuth2Helper = new OAuth2Helper(this.prefs);
-		// Performs an authorized API call.
 		performApiCall();
 		return rootView;
 	}
 
 	/**
-	 * Performs an authorized API call.
+	 * Performs an authorized API call to get burnt calories information.
 	 */
 	private void performApiCall() {
 		new FoodApiCallTask(oAuth2Helper, new FoodApiCallTask.Callback() {
@@ -106,6 +83,9 @@ public class ItemFoodFragment extends Fragment {
 		}).execute();
 	}
 
+	/**
+	 * Reads food items from DB and updates UI when information is available
+	 */
 	private void performGetFoodTask() {
 		new GetFoodsAsyncTask(this, new GetFoodsAsyncTask.Callback() {
 

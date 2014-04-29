@@ -52,8 +52,6 @@ public class GetFoodsAsyncTask extends
 	@Override
 	protected void onProgressUpdate(Integer... progress) {
 
-		// dialog.setMax(progress[1]);
-		// dialog.setProgress(progress[0]);
 	}
 
 	protected void onPostExecute(ArrayList<Food> foods) {
