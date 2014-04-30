@@ -11,7 +11,10 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
-        android:text="Your sleeping pattern last night:" />
+        android:text="Your sleeping pattern till today (in minutes slept):" />
+    
+    
+    
 
     <TextView
         android:id="@+id/result"
@@ -21,6 +24,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp" />
+    
 
     <LinearLayout
         android:id="@+id/chart"
@@ -29,5 +33,7 @@
         android:layout_weight="1"
         android:orientation="horizontal" >
     </LinearLayout>
+
+
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.flufighter.brace.ui.detailFragments;
 
+import java.util.ArrayList;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,9 +12,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.flufighter.brace.R;
+import com.flufighter.brace.R.layout;
 import com.flufighter.brace.ui.ItemDetailActivity;
+import com.flufighter.brace.ws.remote.JawBoneAPIHelper;
 import com.flufighter.brace.ws.remote.oauth2.OAuth2Helper;
+import com.flufighter.brace.ws.remote.oauth2.Oauth2Params;
 
+import android.app.Activity;
+import android.view.Menu;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
@@ -22,9 +28,12 @@ import org.achartengine.model.SeriesSelection;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -44,9 +53,10 @@ public class ItemSleepFragment extends Fragment {
 	private static int[] COLORS = new int[] { Color.GREEN, Color.BLUE,
 			Color.MAGENTA, Color.CYAN };
 
-	private static double[] VALUES = new double[] { 10, 11, 12, 13 };
+	public static double[] VALUES = new double[] { 0, 0, 0 };
 
-	private static String[] NAME_LIST = new String[] { "A", "B", "C", "D" };
+	private static String[] NAME_LIST = new String[] { "Light Sleep",
+			"Deep Sleep", "Awake" };
 
 	private CategorySeries mSeries = new CategorySeries("");
 
@@ -57,6 +67,11 @@ public class ItemSleepFragment extends Fragment {
 	private TextView txtApiResponse;
 	private OAuth2Helper oAuth2Helper;
 	private static String TAG = ItemSleepFragment.class.getSimpleName();
+
+	LinearLayout layout;
+	int lightSleep = 0;
+	int deepSleep = 0;
+	int awakeSleep = 0;
 
 	/**
 	 * The dummy content this fragment is presenting.
@@ -79,8 +94,18 @@ public class ItemSleepFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+
+		this.prefs = PreferenceManager
+				.getDefaultSharedPreferences(getActivity());
+
+		oAuth2Helper = new OAuth2Helper(this.prefs);
+		// Performs an authorized API call.
+		performApiCall();
+
 		View rootView = inflater.inflate(R.layout.right_fragment_sleep,
 				container, false);
+
+		layout = (LinearLayout) rootView.findViewById(R.id.chart);
 
 		mRenderer.setApplyBackgroundColor(true);
 		mRenderer.setBackgroundColor(Color.argb(100, 50, 50, 50));
@@ -91,6 +116,61 @@ public class ItemSleepFragment extends Fragment {
 		mRenderer.setZoomButtonsVisible(true);
 		mRenderer.setStartAngle(90);
 
+		this.txtApiResponse = (TextView) rootView.findViewById(R.id.result);
+
+		// updateUI();
+
+		return rootView;
+	}
+
+	/**
+	 * Performs an authorized API call.
+	 */
+	private void performApiCall() {
+		new ApiCallExecutor().execute();
+	}
+
+	private class ApiCallExecutor extends
+			AsyncTask<Uri, Void, ArrayList<Integer>> {
+
+		String apiResponse = null;
+
+		@Override
+		protected ArrayList<Integer> doInBackground(Uri... params) {
+			ArrayList<Integer> result = new ArrayList<Integer>();
+			try {
+				apiResponse = oAuth2Helper.executeSleepApiCall();
+				Log.i(TAG, "Received response from API : " + apiResponse);
+				result.add((int) JawBoneAPIHelper.parseJsonMovesApiCall(
+						apiResponse, "light"));
+				result.add((int) JawBoneAPIHelper.parseJsonMovesApiCall(
+						apiResponse, "sound"));
+				result.add((int) JawBoneAPIHelper.parseJsonMovesApiCall(
+						apiResponse, "awake"));
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				apiResponse = ex.getMessage();
+			}
+			// return null;
+			return result;
+		}
+
+		@Override
+		protected void onPostExecute(ArrayList<Integer> result) {
+			lightSleep = result.get(0)/60;
+			deepSleep = result.get(1)/60;
+			awakeSleep = result.get(2)/60;
+			VALUES = new double[] { lightSleep, deepSleep, awakeSleep };
+			updateUI();
+		}
+
+	}
+
+	private void updateUI() {
+
+		// textViewLightSleep.setText("Light Sleep = "+ lightSleep + " sec ");
+
 		for (int i = 0; i < VALUES.length; i++) {
 			mSeries.add(NAME_LIST[i] + " " + VALUES[i], VALUES[i]);
 			SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
@@ -100,8 +180,7 @@ public class ItemSleepFragment extends Fragment {
 		}
 
 		if (mChartView == null) {
-			LinearLayout layout = (LinearLayout) rootView
-					.findViewById(R.id.chart);
+			// layout = (LinearLayout) rootView.findViewById(R.id.chart);
 			mChartView = ChartFactory.getPieChartView(getActivity(), mSeries,
 					mRenderer);
 			mRenderer.setClickEnabled(true);
@@ -158,46 +237,6 @@ public class ItemSleepFragment extends Fragment {
 
 		} else {
 			mChartView.repaint();
-		}
-
-		this.txtApiResponse = (TextView) rootView.findViewById(R.id.result);
-
-		this.prefs = PreferenceManager
-				.getDefaultSharedPreferences(getActivity());
-		oAuth2Helper = new OAuth2Helper(this.prefs);
-		// Performs an authorized API call.
-		performApiCall();
-
-		return rootView;
-	}
-
-	/**
-	 * Performs an authorized API call.
-	 */
-	private void performApiCall() {
-		new ApiCallExecutor().execute();
-	}
-
-	private class ApiCallExecutor extends AsyncTask<Uri, Void, Void> {
-
-		String apiResponse = null;
-
-		@Override
-		protected Void doInBackground(Uri... params) {
-
-			try {
-				apiResponse = oAuth2Helper.executeSleepApiCall();
-				Log.i(TAG, "Received response from API : " + apiResponse);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				apiResponse = ex.getMessage();
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(Void result) {
-			txtApiResponse.setText(apiResponse);
 		}
 
 	}
