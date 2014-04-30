@@ -4,8 +4,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
-
-
 public class ProcessTokenTask extends AsyncTask<Uri, Void, Void> {
 
 	public interface Callback {
@@ -13,11 +11,11 @@ public class ProcessTokenTask extends AsyncTask<Uri, Void, Void> {
 	}
 
 	private static String TAG = ProcessTokenTask.class.getSimpleName();
-	String url;
-	boolean startActivity = false;
-	OAuth2Helper oAuth2Helper;
-	boolean handled = false;
-	Callback callback;
+	private String url;
+	private boolean startActivity = false;
+	private OAuth2Helper oAuth2Helper;
+	private boolean handled = false;
+	private Callback callback;
 
 	public ProcessTokenTask(String url, OAuth2Helper oAuth2Helper,
 			Callback callback) {
@@ -65,7 +63,7 @@ public class ProcessTokenTask extends AsyncTask<Uri, Void, Void> {
 		if (startActivity) {
 			Log.i(TAG, " ++++++++++++ Starting mainscreen again");
 			callback.onAuthentication(handled, startActivity);
-			
+
 		}
 
 	}

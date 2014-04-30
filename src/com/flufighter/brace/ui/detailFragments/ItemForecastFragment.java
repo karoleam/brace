@@ -29,16 +29,16 @@ import com.flufighter.brace.ws.remote.OpenWeatherAPI;
 public class ItemForecastFragment extends Fragment {
 
 	private static String TAG = ItemForecastFragment.class.getSimpleName();
-	LocationManager locationManager;
-	LocationListener locationListener;
-	Location location;
-	TextView textViewTemperature;
-	TextView textViewCity;
-	TextView textViewDescription;
-	TextView textViewSuggestion;
+	private LocationManager locationManager;
+	private LocationListener locationListener;
+	private Location location;
+	private TextView textViewTemperature;
+	private TextView textViewCity;
+	private TextView textViewDescription;
+	private TextView textViewSuggestion;
 
 	private RequestQueue mQueue;
-	String locationProvider = LocationManager.NETWORK_PROVIDER;
+	private String locationProvider = LocationManager.NETWORK_PROVIDER;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the

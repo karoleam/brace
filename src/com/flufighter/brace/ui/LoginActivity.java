@@ -28,7 +28,7 @@ public class LoginActivity extends Activity implements
 	private SharedPreferences prefs;
 	private OAuth2Helper oAuth2Helper;
 	private WebView webview;
-	boolean handled = false;
+	private boolean handled = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

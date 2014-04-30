@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-	Context context;
+	private Context context;
 	private static final String TAG = DatabaseHelper.class.getSimpleName();
 	private static final String DATABASE_NAME = "brace.db";
 	private static final int DATABASE_VERSION = 1; /*
@@ -32,7 +32,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		Log.i(TAG, "Tables have been created");
 
-		//insertFoods();
 
 	}
 
@@ -45,7 +44,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		BuildingTable.onUpgrade(db, oldVersion, newVersion);
 		Log.i(TAG, "Tables have been upgraded");
 
-		//insertFoods();
 
 	}
 

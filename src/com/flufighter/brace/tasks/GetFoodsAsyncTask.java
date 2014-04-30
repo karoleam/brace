@@ -18,9 +18,9 @@ public class GetFoodsAsyncTask extends
 		void onFoodData(ArrayList<Food> foods);
 	}
 
-	Context context;
-	String TAG = GetFoodsAsyncTask.class.getSimpleName();
-	Callback callback;
+	private Context context;
+	private static String TAG = GetFoodsAsyncTask.class.getSimpleName();
+	private Callback callback;
 	private ProgressDialog dialog;
 
 	public GetFoodsAsyncTask(ItemFoodFragment itemFoodFragment,
@@ -35,7 +35,7 @@ public class GetFoodsAsyncTask extends
 
 	@Override
 	protected void onPreExecute() {
-		dialog.setMessage("Doing something, please wait.");
+		dialog.setMessage("Loading...");
 		dialog.show();
 	}
 

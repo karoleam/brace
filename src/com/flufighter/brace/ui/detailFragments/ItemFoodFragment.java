@@ -31,13 +31,13 @@ import com.flufighter.brace.ws.remote.oauth2.OAuth2Helper;
  * {@link ItemDetailActivity} on handsets.
  */
 public class ItemFoodFragment extends Fragment {
-	GridView gridview;
+	private GridView gridview;
 	private static String TAG = ItemFoodFragment.class.getSimpleName();
 	private SharedPreferences prefs;
 	private OAuth2Helper oAuth2Helper;
-	boolean isTwoPanel;
-	int caloriesBurnt = 0;
-	TextView textViewCaloriesBurnt;
+	private boolean isTwoPanel;
+	private int caloriesBurnt = 0;
+	private TextView textViewCaloriesBurnt;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the

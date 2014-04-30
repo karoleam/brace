@@ -15,8 +15,8 @@ public class BuildingDataSource {
 
 	public static final String TAG = BuildingDataSource.class.getSimpleName();
 
-	SQLiteOpenHelper dbhelper;
-	SQLiteDatabase database;
+	private SQLiteOpenHelper dbhelper;
+	private SQLiteDatabase database;
 
 	public BuildingDataSource(Context context) {
 		dbhelper = new DatabaseHelper(context);

@@ -153,8 +153,6 @@ public class OAuth2Helper {
 		int date = today.get(Calendar.DATE);
 		today.set(year, month, date, 0, 0, 0);
 
-		// System.out.println(today.getTimeInMillis() / 1000);
-		// System.out.println(now.getTimeInMillis() / 1000);
 
 		return get(
 				"https://jawbone.com/nudge/api/v.1.1/users/@me/moves?start_time="

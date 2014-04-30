@@ -15,8 +15,8 @@ public class FoodDataSource {
 
 	public static final String TAG = FoodDataSource.class.getSimpleName();
 
-	SQLiteOpenHelper dbhelper;
-	SQLiteDatabase database;
+	private SQLiteOpenHelper dbhelper;
+	private SQLiteDatabase database;
 
 	public FoodDataSource(Context context) {
 		dbhelper = new DatabaseHelper(context);

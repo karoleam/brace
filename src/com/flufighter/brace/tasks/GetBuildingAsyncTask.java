@@ -17,9 +17,9 @@ public class GetBuildingAsyncTask extends
 		void onBuildingsData(ArrayList<Building> buildings);
 	}
 
-	Context context;
-	String TAG = GetBuildingAsyncTask.class.getSimpleName();
-	Callback callback;
+	private Context context;
+	private static String TAG = GetBuildingAsyncTask.class.getSimpleName();
+	private Callback callback;
 
 	public GetBuildingAsyncTask(ItemRunFragment itemRunFragment,
 			Callback callback) {
