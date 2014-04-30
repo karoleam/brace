@@ -24,7 +24,7 @@ import com.flufighter.brace.ws.remote.oauth2.ProcessTokenTask;
 public class LoginActivity extends Activity implements
 		ProcessTokenTask.Callback {
 	private static String TAG = LoginActivity.class.getSimpleName();
-
+	public static final String ARG_AUTHENTICATE = "authenticate";
 	private SharedPreferences prefs;
 	private OAuth2Helper oAuth2Helper;
 	private WebView webview;
@@ -32,21 +32,45 @@ public class LoginActivity extends Activity implements
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		Log.i(TAG, " onCreate");
 		super.onCreate(savedInstanceState);
 
 		this.prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 		oAuth2Helper = new OAuth2Helper(this.prefs);
-		try {
-			if (oAuth2Helper.loadCredential().getAccessToken() == null && true) {
+
+		Bundle extra = getIntent().getExtras();
+		if (extra != null) {
+			boolean reAuthentication = extra
+					.getBoolean(ARG_AUTHENTICATE, false);
+			if (reAuthentication)
+				// when a token was saved, but is not valid, so we need to force
+				// reauthentication
 				startOauthFlow();
 
-			} else
-				startMainScreen();
+		} else {
+			try {
+				if (oAuth2Helper.loadCredential().getAccessToken() == null && true) {
 
-		} catch (IOException e) {
-			e.printStackTrace();
+					// when no token has been saved previously
+					startOauthFlow();
+
+				} else
+					// when a token has been saved previously
+					startMainScreen();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+
+	}
+
+	@Override
+	protected void onStart() {
+		Log.i(TAG, " onStart");
+
+		super.onStart();
 
 	}
 
@@ -55,6 +79,8 @@ public class LoginActivity extends Activity implements
 	 * 
 	 */
 	private void startMainScreen() {
+		Log.i(TAG, " startMainScreen");
+
 		startActivity(new Intent().setClass(this, ItemMenuActivity.class));
 	}
 
@@ -63,6 +89,8 @@ public class LoginActivity extends Activity implements
 	 * 
 	 */
 	private void startOauthFlow() {
+		Log.i(TAG, " startOauthFlow");
+
 		webview = new WebView(this);
 		webview.getSettings().setJavaScriptEnabled(true);
 		webview.setVisibility(View.VISIBLE);
@@ -103,6 +131,8 @@ public class LoginActivity extends Activity implements
 
 	@Override
 	public void onAuthentication(boolean handled, boolean startActivity) {
+		Log.i(TAG, " onAuthentication");
+
 		startMainScreen();
 		finish();
 	}

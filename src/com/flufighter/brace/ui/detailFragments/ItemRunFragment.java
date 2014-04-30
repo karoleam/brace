@@ -78,6 +78,10 @@ public class ItemRunFragment extends Fragment {
 
 			@Override
 			public void onAPIResponse(int distanceWalked) {
+				if (distanceWalked < 0) {
+					Helpers.reAuthenticate(getActivity());
+					return;
+				}
 				ItemRunFragment.this.distanceWalked = distanceWalked;
 				performGetBuildingTask();
 			}

@@ -22,6 +22,7 @@ import com.flufighter.brace.tasks.GetFoodsAsyncTask;
 import com.flufighter.brace.ui.ItemDetailActivity;
 import com.flufighter.brace.ui.ItemMenuActivity;
 import com.flufighter.brace.ui.adapter.ImageAdapter;
+import com.flufighter.brace.util.Helpers;
 import com.flufighter.brace.ws.remote.oauth2.OAuth2Helper;
 
 /**
@@ -75,6 +76,10 @@ public class ItemFoodFragment extends Fragment {
 
 			@Override
 			public void onAPIResponse(int caloriesBurnt) {
+				if (caloriesBurnt < 0) {
+					Helpers.reAuthenticate(getActivity());
+					return;
+				}
 				ItemFoodFragment.this.caloriesBurnt = caloriesBurnt;
 				textViewCaloriesBurnt.setText("You burnt " + caloriesBurnt
 						+ " calories, so you can eat:");
