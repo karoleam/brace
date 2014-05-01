@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
-        android:text="Your sleeping pattern till today (in minutes slept):" />
+        android:text="Your sleeping pattern till today (in hours slept):" />
     
     
     

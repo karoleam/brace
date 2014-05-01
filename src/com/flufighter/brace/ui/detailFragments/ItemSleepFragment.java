@@ -109,9 +109,9 @@ public class ItemSleepFragment extends Fragment {
 
 		mRenderer.setApplyBackgroundColor(true);
 		mRenderer.setBackgroundColor(Color.argb(100, 50, 50, 50));
-		mRenderer.setChartTitleTextSize(20);
-		mRenderer.setLabelsTextSize(15);
-		mRenderer.setLegendTextSize(15);
+		mRenderer.setChartTitleTextSize(30);
+		mRenderer.setLabelsTextSize(40);
+		mRenderer.setLegendTextSize(40);
 		mRenderer.setMargins(new int[] { 20, 30, 15, 0 });
 		mRenderer.setZoomButtonsVisible(true);
 		mRenderer.setStartAngle(90);
@@ -158,9 +158,9 @@ public class ItemSleepFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(ArrayList<Integer> result) {
-			lightSleep = result.get(0)/60;
-			deepSleep = result.get(1)/60;
-			awakeSleep = result.get(2)/60;
+			lightSleep = result.get(0)/3600;
+			deepSleep = result.get(1)/3600;
+			awakeSleep = result.get(2)/3600;
 			VALUES = new double[] { lightSleep, deepSleep, awakeSleep };
 			updateUI();
 		}
@@ -193,18 +193,12 @@ public class ItemSleepFragment extends Fragment {
 							.getCurrentSeriesAndPoint();
 
 					if (seriesSelection == null) {
-						Toast.makeText(
-								getActivity(), // <--------------------------------------
-								"No chart element was clicked",
-								Toast.LENGTH_SHORT).show();
+//						Toast.makeText(
+//								getActivity(), // <--------------------------------------
+//								"No chart element was clicked",
+//								Toast.LENGTH_SHORT).show();
 					} else {
-						Toast.makeText(
-								getActivity(), // <--------------------------------------
-								"Chart element data point index "
-										+ (seriesSelection.getPointIndex() + 1)
-										+ " was clicked" + " point value="
-										+ seriesSelection.getValue(),
-								Toast.LENGTH_SHORT).show();
+						Toast.makeText(getActivity(), "Hours = " + seriesSelection.getValue(), Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
@@ -215,18 +209,12 @@ public class ItemSleepFragment extends Fragment {
 					SeriesSelection seriesSelection = mChartView
 							.getCurrentSeriesAndPoint();
 					if (seriesSelection == null) {
-						Toast.makeText(
-								getActivity(), // <--------------------------------------
-								"No chart element was long pressed",
-								Toast.LENGTH_SHORT);
+//						Toast.makeText(
+//								getActivity(), // <--------------------------------------
+//								"No chart element was long pressed",
+//								Toast.LENGTH_SHORT);
 						return false;
-					} else {
-						Toast.makeText(
-								getActivity(), // <--------------------------------------
-								"Chart element data point index "
-										+ seriesSelection.getPointIndex()
-										+ " was long pressed",
-								Toast.LENGTH_SHORT);
+					} else {Toast.makeText(getActivity(), "Hours = " + seriesSelection.getValue(), Toast.LENGTH_SHORT).show();
 						return true;
 					}
 				}
