@@ -55,7 +55,6 @@ public class ItemMenuActivity extends FragmentActivity implements
 		if (findViewById(R.id.item_detail_container) != null) {
 			Toast.makeText(this, "two fragments view", Toast.LENGTH_SHORT)
 					.show();
-			Log.w(TAG, "two fragments view");
 
 			// The detail container view will be present only in the
 			// large-screen layouts (res/values-large and
@@ -71,9 +70,7 @@ public class ItemMenuActivity extends FragmentActivity implements
 			ItemFoodFragment fragment = new ItemFoodFragment();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.item_detail_container, fragment).commit();
-		} else
-			Toast.makeText(this, "no two fragments view", Toast.LENGTH_SHORT)
-					.show();
+		}
 
 		if (!isFirstTime) {
 
@@ -96,7 +93,6 @@ public class ItemMenuActivity extends FragmentActivity implements
 	@Override
 	public void onItemSelected(int id) {
 
-
 		if (mTwoPane) {
 
 			Fragment fragment = MyFragmentManager.getFragmentByType(id);
@@ -109,7 +105,6 @@ public class ItemMenuActivity extends FragmentActivity implements
 			startActivity(detailIntent);
 		}
 
-		
 	}
 
 }
