@@ -53,8 +53,7 @@ public class ItemMenuActivity extends FragmentActivity implements
 		boolean isFirstTime = prefs.getBoolean("isFirstTime", true);
 
 		if (findViewById(R.id.item_detail_container) != null) {
-			Toast.makeText(this, "two fragments view", Toast.LENGTH_SHORT)
-					.show();
+		
 
 			// The detail container view will be present only in the
 			// large-screen layouts (res/values-large and
