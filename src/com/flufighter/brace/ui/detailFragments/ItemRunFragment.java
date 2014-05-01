@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import android.widget.ImageView;
 
 import com.flufighter.brace.R;
@@ -26,7 +25,6 @@ import com.flufighter.brace.ui.ItemDetailActivity;
 import com.flufighter.brace.util.Helpers;
 
 import com.flufighter.brace.ws.remote.oauth2.OAuth2Helper;
-
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either
@@ -89,7 +87,8 @@ public class ItemRunFragment extends Fragment {
 	}
 
 	/**
-	 * Reads buildings items from DB and updates UI when information is available
+	 * Reads buildings items from DB and updates UI when information is
+	 * available
 	 */
 	private void performGetBuildingTask() {
 
@@ -100,8 +99,9 @@ public class ItemRunFragment extends Fragment {
 
 				Random rand = new Random();
 				Building building = buildings.get(rand.nextInt(buildings.size()));
-				float fraction = distanceWalked / building.getLength();
-				textViewLengthWalked.setText(fraction
+				float fraction = (float) distanceWalked
+						/ (float) building.getLength();
+				textViewLengthWalked.setText(String.format("%.1f", fraction)
 						+ " times the length of the " + building.getName());
 
 				imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
